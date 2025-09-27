@@ -257,20 +257,25 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="max-w-6xl lg:hidden hidden bg-white border-t text-sm font-semibold">
                 <div class="px-4 py-4 space-y-2">
-                    <a href="#" class="block py-3 border-b text-gray-700 hover:underline transition-colors">Rent a Car</a>
-                    <a href="#" class="block py-3 border-b text-gray-700 hover:underline transition-colors">Buy a Car</a>
-                    <a href="#" class="block py-3 border-b text-gray-700 hover:underline transition-colors">Car Brands</a>
-                    <a href="#" class="block py-3 border-b text-gray-700 hover:underline transition-colors">Car with Driver</a>
-                    <div class="py-4 space-y-3">
-                        <button class="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 font-medium transition-colors text-white px-6 py-3 rounded-sm w-full">
-                            Book Now
-                        </button>
-                        <!-- <button class="hover:bg-gradient-to-r bg-primary to-primary-dark text-white px-6 py-3 rounded-sm font-semibold w-full transition-all">
-                            Login
-                        </button> -->
+                    <a href="{{url('/')}}" class="block py-3 border-b text-gray-700 hover:underline transition-colors">Home</a>
+                    <a href="#" class="block py-3 border-b text-gray-700 hover:underline transition-colors">About Us</a>
+
+                    <!-- Services dropdown for mobile -->
+                    <div>
+                    <span class="block py-3 border-b text-gray-700">Services</span>
+                    <div class="pl-4 space-y-2">
+                        <a href="{{url('listing')}}" class="block py-2 text-gray-700 hover:underline transition-colors">Airport Transfer</a>
+                        <a href="{{url('listing')}}" class="block py-2 text-gray-700 hover:underline transition-colors">City to City Ride</a>
+                        <a href="{{url('listing')}}" class="block py-2 text-gray-700 hover:underline transition-colors">Hourly Basis</a>
+                        <a href="{{url('listing')}}" class="block py-2 text-gray-700 hover:underline transition-colors">Chauffeur Services</a>
                     </div>
+                    </div>
+
+                    <a href="#" class="block py-3 border-b text-gray-700 hover:underline transition-colors">FAQ</a>
+                    <a href="#" class="block py-3 border-b text-gray-700 hover:underline transition-colors">Help</a>
                 </div>
             </div>
+
         </header>
 
         <!-- Hero Section -->
@@ -409,7 +414,7 @@
 
         
     <!-- Main Content -->
-    <div class="max-w-6xl container mx-auto px-4 py-12">
+    <div class="max-w-6xl container mx-auto px-4 pb-12 mt-0">
         <div class="flex flex-col xl:flex-row gap-8">
             
             <!-- Left Content - Car Listings -->
