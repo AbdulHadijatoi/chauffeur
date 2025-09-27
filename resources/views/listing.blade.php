@@ -188,9 +188,9 @@
                 <div class="flex items-center justify-between py-3">
                     <!-- Logo -->
                     <div class="flex items-center">
-                        <div class="rounded-sm font-bold text-md">
+                        <a href="{{url('/')}}" class="rounded-sm font-bold text-md">
                             CHAUFFEUR
-                        </div>
+                        </a>
                     </div>
 
                     <!-- Mobile Menu Button -->
@@ -200,7 +200,7 @@
 
                     <!-- Desktop Navigation -->
                     <nav class="hidden lg:flex items-center space-x-8">
-                        <a href="#" class="flex items-center hover:underline transition-colors py-2">
+                        <a href="{{url('/')}}" class="flex items-center hover:underline transition-colors py-2">
                             Home
                         </a>
 
