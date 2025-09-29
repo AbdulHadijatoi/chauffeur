@@ -4,8 +4,8 @@
         <div class="flex items-center justify-between py-3">
             <!-- Logo -->
             <div class="flex items-center">
-                <a href="{{url('/')}}" class="rounded-sm font-bold text-md">
-                    CHAUFFEUR
+                <a href="{{url('/')}}" class="rounded-sm font-bold text-md glass-effect">
+                    <img src="{{Storage::url('uploads/logos/logo_horizontal.png')}}" alt="Logo" class="h-12">
                 </a>
             </div>
 

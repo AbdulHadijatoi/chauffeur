@@ -39,6 +39,13 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style type="text/tailwindcss">
+        @layer components {
+            .active-tab {
+                @apply transition-all duration-300 rounded-full text-white bg-gradient-to-r from-red-500 to-orange-500 font-medium;
+            }
+        }
+    </style>
     <style>
         .glass-effect {
             backdrop-filter: blur(10px);
@@ -165,6 +172,22 @@
                 width: 100%;
                 margin-bottom: 0.75rem;
             }
+        }
+
+        /* FAQ */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-answer.active {
+            max-height: 500px;
+        }
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .toggle-icon.rotate {
+            transform: rotate(45deg);
         }
     </style>
 </head>

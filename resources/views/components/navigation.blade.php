@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <a href="#" class="flex items-center hover:underline transition-colors py-2">
+    <a href="{{url('faq')}}" class="flex items-center hover:underline transition-colors py-2">
         FAQ
     </a>
 
