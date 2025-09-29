@@ -3,11 +3,11 @@
 @section('title', 'Home')
 
 @section('content')
-<div class="flex flex-col md:flex-row gap-4 max-w-6xl mx-auto md:-mt-10">
+<div class="flex flex-col md:flex-row gap-4 max-w-6xl mx-auto">
     <!-- Card 1: Flexible Pick-Up & Drop-Off -->
     <div class="bg-red-50 rounded-2xl p-6 flex-1 relative">
         <div class="absolute top-6 right-6">
-            <div class="bg-red-500 rounded-full w-10 h-10 flex items-center justify-center">
+            <div class="secondary_color rounded-full w-10 h-10 flex items-center justify-center">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -34,7 +34,7 @@
     <!-- Card 3: Flexible Rental Periods -->
     <div class="bg-red-50 rounded-2xl p-6 flex-1 relative">
         <div class="absolute top-6 right-6">
-            <div class="bg-red-500 rounded-full w-10 h-10 flex items-center justify-center">
+            <div class="secondary_color rounded-full w-10 h-10 flex items-center justify-center">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
@@ -76,7 +76,7 @@
         
         <!-- Floating circular badge -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-            <div class="bg-red-500 rounded-full w-40 h-40 flex flex-col items-center justify-center text-white shadow-2xl">
+            <div class="secondary_color rounded-full w-40 h-40 flex flex-col items-center justify-center text-white shadow-2xl">
                 <div class="text-4xl font-bold mb-1">10+</div>
                 <div class="text-center text-sm leading-tight">
                     Years of<br>Experience
@@ -90,10 +90,10 @@
     <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
         <!-- Header -->
         <div class="flex items-center mb-6">
-            <div class="w-6 h-6 border-2 border-red-500 rounded-sm flex items-center justify-center mr-3">
-                <div class="w-2 h-2 bg-red-500 rounded-sm"></div>
+            <div class="w-6 h-6 border-2 primary_border_color rounded-sm flex items-center justify-center mr-3">
+                <div class="w-2 h-2 primary_color rounded-sm"></div>
             </div>
-            <span class="text-red-500 font-medium">Get to know about Us</span>
+            <span class="primary_text_color font-medium">Get to know about Us</span>
         </div>
 
         <!-- Main heading -->
@@ -110,7 +110,7 @@
         <div class="space-y-6 mb-8">
             <!-- Convenient Locations -->
             <div class="flex items-start">
-                <div class="bg-green-500 rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1">
+                <div class="secondary_color rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1">
                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                     </svg>
@@ -123,7 +123,7 @@
 
             <!-- Customer-Centric Service -->
             <div class="flex items-start">
-                <div class="bg-orange-500 rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1">
+                <div class="secondary_color rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1">
                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                     </svg>
@@ -136,7 +136,7 @@
 
             <!-- Safety First -->
             <div class="flex items-start">
-                <div class="bg-purple-500 rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1">
+                <div class="secondary_color rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1">
                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                     </svg>
@@ -168,7 +168,7 @@
                 <!-- Rating and reviews -->
                 <div>
                     <div class="flex items-center mb-1">
-                        <div class="flex text-red-500">
+                        <div class="flex primary_text_color">
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
@@ -422,7 +422,7 @@
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Have a route in mind?</h3>
                     <p class="text-gray-600">Enter your pickup and drop-off locations to see the price.</p>
                 </div>
-                <button class="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 font-medium transition-colors text-white px-8 py-3 rounded-lg">
+                <button class="primary_color text-white px-8 py-3 rounded-lg">
                     Book a City-to-City ride
                 </button>
             </div>
@@ -451,19 +451,19 @@
                 <!-- Stars and title -->
                 <div class="mb-4">
                     <div class="flex items-center space-x-1 mb-2">
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
                     </div>
@@ -493,19 +493,19 @@
                 <!-- Stars and title -->
                 <div class="mb-4">
                     <div class="flex items-center space-x-1 mb-2">
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
                     </div>
@@ -535,19 +535,19 @@
                 <!-- Stars and title -->
                 <div class="mb-4">
                     <div class="flex items-center space-x-1 mb-2">
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
-                        <svg class="w-4 h-4 text-red-600 fill-current" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 primary_text_color fill-current" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                         </svg>
                     </div>

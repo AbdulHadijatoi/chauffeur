@@ -1,4 +1,4 @@
-<div class="bg-black text-white text-sm h-8 align-middle flex items-center">
+<div class="primary_color text-white text-sm h-8 align-middle flex items-center">
     <div class="container max-w-6xl mx-auto flex justify-between items-center">
         <div class="flex items-center space-x-6">
             <span class="flex items-center hidden md:flex"><i class="fas fa-clock mr-1 text-white"></i>24/7 Service</span>

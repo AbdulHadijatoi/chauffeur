@@ -42,8 +42,34 @@
     <style type="text/tailwindcss">
         @layer components {
             .active-tab {
-                @apply transition-all duration-300 rounded-full text-white bg-gradient-to-r from-red-500 to-orange-500 font-medium;
+                @apply transition-all duration-300 bg-[#c7a240] rounded-full text-white font-medium;
             }
+
+            .secondary_color {
+                @apply transition-all duration-300 text-white bg-[#c7a240] font-medium;
+            }
+
+            .primary_color {
+                @apply transition-all duration-300 text-white bg-[#c7a240] font-medium;
+            }
+
+            .primary_color2 {
+                @apply transition-all duration-300 text-white bg-[#b9a26e] font-medium;
+            }
+            
+            .primary_text_color {
+                @apply text-[#c7a240];
+            }
+            
+            .primary_border_color {
+                @apply border-[#c7a240];
+            }
+
+            .primary_color3 {
+                @apply transition-all duration-300 text-white bg-gradient-to-r from-yellow-700 via-amber-500 to-yellow-400 font-medium;
+            }
+
+
         }
     </style>
     <style>
