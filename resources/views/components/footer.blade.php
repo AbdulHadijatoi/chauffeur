@@ -65,11 +65,11 @@
                     </div>
                     <div class="flex items-center">
                         <i class="fas fa-phone mr-3 text-white"></i>
-                        <a href="tel:+971501234567" class="hover:underline transition-colors">+971 50 123 4567</a>
+                        <a href="tel:+971501234567" class="hover:underline transition-colors">+971 52 308 7786</a>
                     </div>
                     <div class="flex items-center">
                         <i class="fas fa-envelope mr-3 text-white"></i>
-                        <a href="mailto:info@Chauffeur.com" class="hover:underline transition-colors">info@Chauffeur.com</a>
+                        <a href="mailto:info@chauffeurdubai.com" class="hover:underline transition-colors">info@chauffeurdubai.com</a>
                     </div>
                     <div class="flex items-center">
                         <i class="fas fa-clock mr-3 text-white"></i>

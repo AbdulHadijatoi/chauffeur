@@ -3,8 +3,8 @@
         <div class="flex items-center space-x-6">
             <span class="flex items-center hidden md:flex"><i class="fas fa-clock mr-1 text-white"></i>24/7 Service</span>
             <span class="items-center"><i class="fas fa-map-marker-alt mr-1 text-white"></i>Dubai, UAE</span>
-            <span class="items-center"><i class="fas fa-phone mr-1 text-white"></i>+971 50 123 4567</span>
-            <span class="flex items-center hidden md:flex"><i class="fas fa-envelope mr-1 text-white"></i>info@chauffeur.com</span>
+            <span class="items-center"><i class="fas fa-phone mr-1 text-white"></i>+971 52 308 7786</span>
+            <span class="flex items-center hidden md:flex"><i class="fas fa-envelope mr-1 text-white"></i>info@chauffeurdubai.com</span>
         </div>
     </div>
 </div>
