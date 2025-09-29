@@ -12,13 +12,13 @@
         <div class="xl:w-3/4">
             <div class="mb-6 text-sm font-medium">
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">Rent a Car With Driver in Dubai</h2>
-                <div class="flex flex-wrap gap-2">
+                <!-- <div class="flex flex-wrap gap-2">
                     <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Mercedes Benz with Driver</span>
                     <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Mercedes V class with Driver</span>
                     <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Mercedes S Class with Driver</span>
                     <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Rolls Royce with Driver</span>
                     <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-semibold underline">View more</button>
-                </div>
+                </div> -->
             </div>
 
             <!-- Car Listings -->
@@ -68,11 +68,11 @@
                                     <div class="lg:col-span-1">
                                         <div class="space-y-1">
                                             <div class="rounded-sm p-2">
-                                                <div class="text-xl md:text-2xl font-bold text-primary">AED 800</div>
+                                                <div class="text-xl md:text-2xl font-bold primary_text_color">AED 800</div>
                                                 <div class="text-sm text-gray-600 font-medium">5-Hour Service</div>
                                             </div>
                                             <div class="rounded-sm p-2">
-                                                <div class="text-lg font-bold text-primary">AED 1300</div>
+                                                <div class="text-lg font-bold primary_text_color">AED 1300</div>
                                                 <div class="text-sm text-gray-600 font-medium">10-Hour Service</div>
                                             </div>
                                         </div>
@@ -84,20 +84,20 @@
                             <div class="action-buttons px-4 md:px-6 py-4">
                                 <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
                                     <!-- primary Action Buttons -->
-                                    <div class="flex justify-center sm:justify-end space-x-3 py-3 text-lg">
-                                        <button class="flex items-center justify-center w-[50px] h-[50px] border rounded-full hover:border-black hover:bg-black hover:text-white transition-all duration-300" onclick="showLocation()" title="Show Location">
+                                    <div class="flex justify-center sm:justify-end space-x-3 py-3 text-lg primary_text_color">
+                                        <button class="flex items-center justify-center w-[50px] h-[50px] border primary_border_color rounded-full hover:primary_color hover:text-white transition-all duration-300" onclick="showLocation()" title="Show Location">
                                             <i class="fas fa-map-marker-alt"></i>
                                         </button>
-                                        <button class="flex items-center justify-center w-[50px] h-[50px] border rounded-full hover:border-black hover:bg-black hover:text-white transition-all duration-300" onclick="makeCall()" title="Call Now">
+                                        <button class="flex items-center justify-center w-[50px] h-[50px] border primary_border_color rounded-full hover:primary_color hover:text-white transition-all duration-300" onclick="makeCall()" title="Call Now">
                                             <i class="fas fa-phone"></i>
                                         </button>
-                                        <button class="flex items-center justify-center w-[50px] h-[50px] border rounded-full hover:border-black hover:bg-black transition-all duration-300 group" onclick="openWhatsApp()" title="WhatsApp">
+                                        <button class="flex items-center justify-center w-[50px] h-[50px] border primary_border_color rounded-full hover:primary_color transition-all duration-300 group" onclick="openWhatsApp()" title="WhatsApp">
                                             <i class="fab fa-whatsapp group-hover:text-white transition-colors duration-300"></i>
                                         </button>
                                     </div>
 
                                     <!-- Primary Action Button -->
-                                    <button class="quote-btn quote-btn-mobile bg-gray-800 text-white px-6 py-3 rounded-full hover:from-gray-900 hover:to-black transform hover:scale-[101%] transition-all duration-300  text-sm flex-1 sm:flex-none sm:min-w-[120px]" data-car="Nissan Patrol Titanium 2023" onclick="getQuote()">
+                                    <button class="quote-btn quote-btn-mobile primary_color text-white px-6 py-3 rounded-full hover:from-gray-900 hover:to-black transform hover:scale-[101%] transition-all duration-300  text-sm flex-1 sm:flex-none sm:min-w-[120px]" data-car="Nissan Patrol Titanium 2023" onclick="getQuote()">
                                         Get Quote
                                     </button>
                                     
@@ -152,7 +152,7 @@
                 </div>
 
                 <!-- Search Button -->
-                <button class="w-full bg-black text-white py-3 rounded-md hover:from-primary-dark hover:to-primary transform hover:scale-[101%] transition-all">
+                <button class="w-full primary_color text-white py-3 rounded-md">
                     SHOW RESULTS
                 </button>
 
