@@ -8,108 +8,7 @@
 <div class="max-w-6xl container mx-auto px-4 pb-12 mt-0">
     <div class="flex flex-col xl:flex-row gap-8">
         
-        <!-- Left Content - Car Listings -->
-        <div class="xl:w-3/4">
-            <div class="mb-6 text-sm font-medium">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">Rent a Car With Driver in Dubai</h2>
-                <!-- <div class="flex flex-wrap gap-2">
-                    <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Mercedes Benz with Driver</span>
-                    <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Mercedes V class with Driver</span>
-                    <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Mercedes S Class with Driver</span>
-                    <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Rolls Royce with Driver</span>
-                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-semibold underline">View more</button>
-                </div> -->
-            </div>
-
-            <!-- Car Listings -->
-            <div class="space-y-6">
-                <!-- Nissan Patrol -->
-                <div class="bg-white rounded-lg overflow-hidden transition-all duration-300 border md:h-80 transform hover:scale-[101%] transition-all">
-                    <div class="flex flex-col md:flex-row h-full image-slider">
-                        <!-- Image Slider -->
-                        <div class="w-100 md:w-80 flex-shrink-0 image-slider">
-                            <div class="slider-container h-full">
-                                <div class="slider-wrapper">
-                                    <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol" class="w-full h-full object-cover">
-                                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol Interior" class="w-full h-full object-cover">
-                                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol Side" class="w-full h-full object-cover">
-                                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol Back" class="w-full h-full object-cover">
-                                </div>
-                                <div class="slider-dots">
-                                    <div class="slider-dot active"></div>
-                                    <div class="slider-dot"></div>
-                                    <div class="slider-dot"></div>
-                                    <div class="slider-dot"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Content -->
-                        <div class="flex-1 flex flex-col min-h-0">
-                            <!-- Main Content Area -->
-                            <div class="flex-1 p-4 md:p-6">
-                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 h-full">
-                                    <!-- Left Column: Title & Details -->
-                                    <div class="lg:col-span-2 flex flex-col text-gray-800">
-                                        <h3 class="text-lg md:text-xl font-bold  mb-2">Nissan Patrol Titanium 2023</h3>
-                                        <div class="flex items-center text-sm mb-3 flex-wrap gap-3">
-                                            <span class="font-medium">Full-size SUV</span>
-                                            <span class="flex items-center"><i class="fas fa-users mr-1"></i>8</span>
-                                            <span class="flex items-center"><i class="fas fa-suitcase mr-1"></i>3</span>
-                                        </div>
-                                        <div class="space-y-2 text-sm text-gray-700 flex-1 mb-4 lg:mb-0">
-                                            <div class="flex items-center"><i class="fas fa-check-circle mr-2"></i>All Inclusive Pricing</div>
-                                            <div class="flex items-center"><i class="fas fa-user-tie mr-2"></i>Professional Chauffeur</div>
-                                            <div class="flex items-center"><i class="fas fa-shield-check mr-2"></i>No Surge Pricing</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Right Column: Pricing -->
-                                    <div class="lg:col-span-1">
-                                        <div class="space-y-1">
-                                            <div class="rounded-sm p-2">
-                                                <div class="text-xl md:text-2xl font-bold primary_text_color">AED 800</div>
-                                                <div class="text-sm text-gray-600 font-medium">5-Hour Service</div>
-                                            </div>
-                                            <div class="rounded-sm p-2">
-                                                <div class="text-lg font-bold primary_text_color">AED 1300</div>
-                                                <div class="text-sm text-gray-600 font-medium">10-Hour Service</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="action-buttons px-4 md:px-6 py-4">
-                                <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
-                                    <!-- primary Action Buttons -->
-                                    <div class="flex justify-center sm:justify-end space-x-3 py-3 text-lg primary_text_color">
-                                        <button class="flex items-center justify-center w-[50px] h-[50px] border primary_border_color rounded-full hover:primary_color hover:text-white transition-all duration-300" onclick="showLocation()" title="Show Location">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </button>
-                                        <button class="flex items-center justify-center w-[50px] h-[50px] border primary_border_color rounded-full hover:primary_color hover:text-white transition-all duration-300" onclick="makeCall()" title="Call Now">
-                                            <i class="fas fa-phone"></i>
-                                        </button>
-                                        <button class="flex items-center justify-center w-[50px] h-[50px] border primary_border_color rounded-full hover:primary_color transition-all duration-300 group" onclick="openWhatsApp()" title="WhatsApp">
-                                            <i class="fab fa-whatsapp group-hover:text-white transition-colors duration-300"></i>
-                                        </button>
-                                    </div>
-
-                                    <!-- Primary Action Button -->
-                                    <button class="quote-btn quote-btn-mobile primary_color text-white px-6 py-3 rounded-full hover:from-gray-900 hover:to-black transform hover:scale-[101%] transition-all duration-300  text-sm flex-1 sm:flex-none sm:min-w-[120px]" data-car="Nissan Patrol Titanium 2023" onclick="getQuote()">
-                                        Get Quote
-                                    </button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Sidebar - Filters -->
+    <!-- Right Sidebar - Filters -->
         <div class="xl:w-1/4">
             <div class="sticky top-24 space-y-6 text-sm font-medium">
                 <!-- Sort By -->
@@ -185,6 +84,108 @@
                 </div>
             </div>
         </div>
+        <!-- Left Content - Car Listings -->
+        <div class="xl:w-3/4">
+            <div class="mb-6 text-sm font-medium">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Rent a Car With Driver in Dubai</h2>
+                <!-- <div class="flex flex-wrap gap-2">
+                    <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Mercedes Benz with Driver</span>
+                    <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Mercedes V class with Driver</span>
+                    <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Mercedes S Class with Driver</span>
+                    <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full">Rolls Royce with Driver</span>
+                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-semibold underline">View more</button>
+                </div> -->
+            </div>
+
+            <!-- Car Listings -->
+            <div class="space-y-6">
+                <!-- Nissan Patrol -->
+                <div class="bg-white rounded-lg overflow-hidden transition-all duration-300 border md:h-80 transform hover:scale-[101%] transition-all">
+                    <div class="flex flex-col md:flex-row h-full image-slider">
+                        <!-- Image Slider -->
+                        <div class="w-100 md:w-80 flex-shrink-0 image-slider">
+                            <div class="slider-container h-full">
+                                <div class="slider-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol" class="w-full h-full object-cover">
+                                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol Interior" class="w-full h-full object-cover">
+                                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol Side" class="w-full h-full object-cover">
+                                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol Back" class="w-full h-full object-cover">
+                                </div>
+                                <div class="slider-dots">
+                                    <div class="slider-dot active"></div>
+                                    <div class="slider-dot"></div>
+                                    <div class="slider-dot"></div>
+                                    <div class="slider-dot"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Content -->
+                        <div class="flex-1 flex flex-col min-h-0">
+                            <!-- Main Content Area -->
+                            <div class="flex-1 p-4 md:p-6">
+                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 h-full">
+                                    <!-- Left Column: Title & Details -->
+                                    <div class="lg:col-span-2 flex flex-col text-gray-800">
+                                        <h3 class="text-lg md:text-xl font-bold  mb-2">Car WIth Driver in Dubai For 10 Hours</h3>
+                                        <div class="flex items-center text-sm mb-3 flex-wrap gap-3">
+                                            <span class="font-medium">Full-size SUV</span>
+                                            <span class="flex items-center"><i class="fas fa-users mr-1"></i>7</span>
+                                            <span class="flex items-center"><i class="fas fa-suitcase mr-1"></i>2</span>
+                                        </div>
+                                        <div class="space-y-2 text-sm text-gray-700 flex-1 mb-4 lg:mb-0">
+                                            <div class="flex items-center"><i class="fas fa-check-circle mr-2"></i>All Inclusive Pricing</div>
+                                            <div class="flex items-center"><i class="fas fa-user-tie mr-2"></i>Professional Chauffeur</div>
+                                            <!-- <div class="flex items-center"><i class="fas fa-shield-check mr-2"></i>No Surge Pricing</div> -->
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Right Column: Pricing -->
+                                    <div class="lg:col-span-1">
+                                        <div class="space-y-1">
+                                            <div class="rounded-sm p-2">
+                                                <div class="text-xl md:text-2xl font-bold primary_text_color">AED 600</div>
+                                                <div class="text-sm text-gray-600 font-medium">10-Hour Service</div>
+                                            </div>
+                                            <div class="rounded-sm p-2">
+                                                <div class="text-lg font-bold primary_text_color">AED 100</div>
+                                                <div class="text-sm text-gray-600 font-medium">Additional Hour</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons px-4 md:px-6 py-4">
+                                <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
+                                    <!-- primary Action Buttons -->
+                                    <div class="flex justify-center sm:justify-end space-x-3 py-3 text-lg primary_text_color">
+                                        <button class="flex items-center justify-center w-[50px] h-[50px] border primary_border_color rounded-full hover:primary_color hover:text-white transition-all duration-300" onclick="showLocation()" title="Show Location">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </button>
+                                        <button class="flex items-center justify-center w-[50px] h-[50px] border primary_border_color rounded-full hover:primary_color hover:text-white transition-all duration-300" onclick="makeCall()" title="Call Now">
+                                            <i class="fas fa-phone"></i>
+                                        </button>
+                                        <a href="https://wa.me/971523087786" target="_blank" class="flex items-center justify-center w-[50px] h-[50px] border primary_border_color rounded-full hover:primary_color transition-all duration-300 group" onclick="openWhatsApp()" title="WhatsApp">
+                                            <i class="fab fa-whatsapp group-hover:text-white transition-colors duration-300"></i>
+                                        </a>
+                                    </div>
+
+                                    <!-- Primary Action Button -->
+                                    <button class="quote-btn quote-btn-mobile primary_color text-white px-6 py-3 rounded-full hover:from-gray-900 hover:to-black transform hover:scale-[101%] transition-all duration-300  text-sm flex-1 sm:flex-none sm:min-w-[120px]" data-car="Nissan Patrol Titanium 2023" onclick="getQuote()">
+                                        Get Quote
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
     </div>
 </div>
 
