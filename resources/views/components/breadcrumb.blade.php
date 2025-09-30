@@ -3,7 +3,7 @@
         <div class="absolute inset-0 bg-black/50 z-10"></div>
         <div class="absolute inset-0 opacity-50" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
         
-        <div class="max-w-6xl container mx-auto relative z-10 py-8 md:py-16">
+        <div class="max-w-6xl container mx-auto relative z-10 py-8 md:py-5">
             {{-- Breadcrumb --}}
             <nav aria-label="Breadcrumb" class="mb-4">
                 <ol class="flex items-center flex-wrap space-x-2 text-sm">
