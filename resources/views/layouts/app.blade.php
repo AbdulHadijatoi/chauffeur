@@ -222,7 +222,12 @@
     @include('components.header')
     
     <main>
-        @include('components.hero-section')
+        @if (Route::is('home') || Route::is('listing'))
+            @include('components.hero-section')
+        @else
+            @include('components.breadcrumb')
+        @endif
+
         @yield('content')
     </main>
     
