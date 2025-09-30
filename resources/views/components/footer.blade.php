@@ -77,7 +77,7 @@
                     </div>
                     <div class="flex items-center">
                         <i class="fab fa-whatsapp mr-3 text-white"></i>
-                        <a href="https://wa.me/971501234567" class="hover:underline transition-colors">WhatsApp Support</a>
+                        <a href="https://wa.me/971523087786" target="_blank" class="hover:underline transition-colors">WhatsApp Support</a>
                     </div>
                 </div>
             </div>

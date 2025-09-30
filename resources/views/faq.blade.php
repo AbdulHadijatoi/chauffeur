@@ -168,16 +168,13 @@
         </div>
 
         <!-- Contact Section -->
-        <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl p-8 md:p-12 text-center shadow-xl">
+        <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl p-4 md:p-5 text-center shadow-xl">
             <div class="max-w-2xl mx-auto">
-                <div class="inline-flex items-center justify-center w-16 h-16 primary_color rounded-full mb-6">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Still Have Questions?</h2>
-                <p class="text-gray-300 mb-8 text-base md:text-lg">Can't find the answer you're looking for? Our dedicated support team is here to help you 24/7.</p>
-                <a href="#" class="inline-flex items-center primary_color hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+
+                <h2 class="text-1xl md:text-2xl font-bold text-white mb-2">Still Have Questions?</h2>
+                <p class="text-gray-300 mb-4 text-base md:text-sm">Can't find the answer you're looking for? Our dedicated support team is here to help you 24/7.</p>
+
+                <a href="https://wa.me/971523087786" target="_blank" class="inline-flex items-center primary_color text-white font-semibold px-8 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Contact Us Now
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
