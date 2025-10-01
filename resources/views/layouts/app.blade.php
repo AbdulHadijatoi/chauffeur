@@ -13,11 +13,10 @@
                 extend: {
                     colors: {
                         primary: '#1e40af',
-                        primary: '#f97316',
+                        primary: '#c7a240',
                         accent: '#059669',
                         dark: '#0f172a',
-                        'primary-dark': '#1e3a8a',
-                        'primary-dark': '#ea580c'
+                        'primary-dark': '#c7a240'
                     },
                     animation: {
                         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -73,6 +72,19 @@
         }
     </style>
     <style>
+         @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.2s ease-out;
+        }
         .glass-effect {
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -134,14 +146,14 @@
             border: 1px solid rgba(255, 255, 255, 0.8);
         }
         
-        .slider-dot.active {
-            background-color: white;
-            transform: scale(1.3);
-            border-color: white;
-        }
-        
         .slider-dot:hover {
             background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .slider-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
         }
         
         /* Responsive adjustments */
