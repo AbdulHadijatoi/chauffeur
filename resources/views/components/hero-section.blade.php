@@ -12,14 +12,14 @@
         </div>
         
         <!-- Tab Navigation -->
-        <div class="flex md:w-fit w-full text-black text-md rounded-full bg-white p-1 gap-1 mt-4">
-            <button class="flex-1 h-full px-2 md:px-8 py-2 whitespace-nowrap active-tab">
+        <div class="flex w-fit md:w-fit text-black text-xs md:text-md rounded-full bg-white p-1 gap-1 mt-4">
+            <button class="h-full px-4 md:px-8 py-2 whitespace-nowrap active-tab">
                 Chauffeur Service
             </button>
-            <button class="flex-1 h-full px-2 md:px-8 py-2 whitespace-nowrap">
+            <button class="h-full px-4 md:px-8 py-2 whitespace-nowrap">
                 Airport Transfer
             </button>
-            <button class="flex-1 h-full px-2 md:px-8 py-2 whitespace-nowrap">
+            <button class="h-full px-4 md:px-8 py-2 whitespace-nowrap">
                 City-to-City Ride
             </button>
         </div>
