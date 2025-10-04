@@ -52,14 +52,14 @@
 
         {{-- Page Heading --}}
         <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
-            Frequently Asked Questions
+            Car With Driver in Dubai For 10 Hours
         </h1>
         
         <p class="text-gray-200 text-lg md:text-xl mb-2">
             Professional Chauffeur Hire Dubai
         </p>
         <p class="text-gray-300 text-sm md:text-base max-w-3xl">
-            Find answers to common questions about our premium chauffeur services in Dubai and the surrounding Emirates.
+            Kicking off on April 1, 2025, the "DreamTour" will take Luna to major cities across North America and Europe.
         </p>
     </div>
 </section>
