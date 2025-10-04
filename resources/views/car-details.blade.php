@@ -75,7 +75,7 @@
             <!-- Main Image -->
             <div class="relative">
             <img id="main-image" src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop" alt="Blue Audi" class="w-full h-96 object-cover transition-opacity duration-200">
-            <button class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 hover:bg-gray-50 transition">
+            <button id="see-all-btn" type="button" class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 hover:bg-gray-50 transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
@@ -89,6 +89,16 @@
             <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f1ea8?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1614162692292-7ac56d7f1ea8?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
             <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
             <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
+            </div>
+
+            <!-- Image Modal / Lightbox -->
+            <div id="image-modal" class="fixed inset-0 z-50 hidden bg-black/80 flex items-center justify-center" role="dialog" aria-modal="true" aria-hidden="true">
+                <button id="modal-close" class="absolute top-6 right-6 text-white bg-black/30 hover:bg-black/50 p-2 rounded-full" aria-label="Close image viewer">✕</button>
+                <button id="modal-prev" class="absolute left-6 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 p-3 rounded-full" aria-label="Previous image">◀</button>
+                <div class="max-w-5xl max-h-[80vh] mx-6 flex items-center justify-center">
+                    <img id="modal-image" src="" alt="" class="max-w-full max-h-[80vh] object-contain transition-opacity duration-200">
+                </div>
+                <button id="modal-next" class="absolute right-6 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 p-3 rounded-full" aria-label="Next image">▶</button>
             </div>
         </div>
 
@@ -516,6 +526,64 @@
                     });
                 });
             }
+
+            // Lightbox / modal image viewer
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalPrev = document.getElementById('modal-prev');
+            const modalNext = document.getElementById('modal-next');
+            const modalClose = document.getElementById('modal-close');
+            const seeAllBtn = document.getElementById('see-all-btn');
+
+            // collect images from thumbnails
+            const gallery = Array.from(document.querySelectorAll('.thumbnail')).map(t => t.getAttribute('data-large') || t.src);
+            let currentIndex = 0;
+
+            function openModal(index) {
+                if (!modal) return;
+                currentIndex = (index + gallery.length) % gallery.length;
+                modalImage.style.opacity = '0';
+                modal.classList.remove('hidden');
+                modal.setAttribute('aria-hidden', 'false');
+                // small timeout to allow display then load image
+                setTimeout(() => {
+                    modalImage.src = gallery[currentIndex];
+                    modalImage.onload = () => { modalImage.style.opacity = '1'; };
+                }, 50);
+            }
+
+            function closeModal() {
+                if (!modal) return;
+                modal.classList.add('hidden');
+                modal.setAttribute('aria-hidden', 'true');
+                modalImage.src = '';
+            }
+
+            function showNext() { openModal(currentIndex + 1); }
+            function showPrev() { openModal(currentIndex - 1); }
+
+            if (seeAllBtn) {
+                seeAllBtn.addEventListener('click', () => openModal(0));
+            }
+
+            if (modalClose) modalClose.addEventListener('click', closeModal);
+            if (modalNext) modalNext.addEventListener('click', showNext);
+            if (modalPrev) modalPrev.addEventListener('click', showPrev);
+
+            // click outside image closes
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal();
+                });
+            }
+
+            // keyboard support
+            document.addEventListener('keydown', (e) => {
+                if (!modal || modal.classList.contains('hidden')) return;
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') showNext();
+                if (e.key === 'ArrowLeft') showPrev();
+            });
         })();
     </script>
 @endsection

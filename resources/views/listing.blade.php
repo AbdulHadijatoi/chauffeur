@@ -162,9 +162,9 @@
 
                                     <div class="lg:col-span-2 flex flex-col text-gray-800">
                                         <div class="mb-4">
-                                            <h2> class="text-xl font-medium text-gray-900 mb-1">
+                                            <a href="{{route('car_details')}}" class="text-xl font-medium text-gray-900 mb-1">
                                                 Car With Driver in Dubai For 10 Hours
-                                            </h2>
+                                            </a>
                                         </div>    
 
                                         <div class="flex flex-wrap gap-2 mb-4">
