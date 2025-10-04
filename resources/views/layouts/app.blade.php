@@ -72,6 +72,12 @@
         }
     </style>
     <style>
+        .thumbnail {
+            transition: transform 0.2s;
+        }
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
          @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -234,18 +240,12 @@
     @include('components.header')
     
     <main>
-        @if (Route::is('home') || Route::is('listing'))
-            @include('components.hero-section')
-        @else
-            @include('components.breadcrumb')
-        @endif
-
         @yield('content')
     </main>
     
     @include('components.footer')
     
-    @include('components.scripts')
+    @include('components.common-scripts')
     @stack('scripts')
 </body>
 </html>

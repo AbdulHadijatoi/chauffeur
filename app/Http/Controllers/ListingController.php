@@ -12,4 +12,10 @@ class ListingController extends Controller
             'title' => 'Listing'
         ]);
     }
+
+    public function car_details(){
+        return view('car-details', [
+            'title', 'Car Details'
+        ]);
+    }
 }

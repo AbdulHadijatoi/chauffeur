@@ -14,10 +14,9 @@
         </a>
         <div class="absolute top-full left-0 bg-white shadow-xl rounded-sm w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 z-50 border">
             <div class="py-3">
+                <a href="{{url('listing')}}" class="block px-4 py-3 hover:bg-gray-50 transition-colors">Chauffeur Services</a>
                 <a href="{{url('listing')}}" class="block px-4 py-3 hover:bg-gray-50 transition-colors">Airport Transfer</a>
                 <a href="{{url('listing')}}" class="block px-4 py-3 hover:bg-gray-50 transition-colors">City to City Ride</a>
-                <a href="{{url('listing')}}" class="block px-4 py-3 hover:bg-gray-50 transition-colors">Hourly Basis</a>
-                <a href="{{url('listing')}}" class="block px-4 py-3 hover:bg-gray-50 transition-colors">Chauffeur Services</a>
             </div>
         </div>
     </div>
