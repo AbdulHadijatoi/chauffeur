@@ -74,7 +74,7 @@
         <div class="bg-white rounded-lg shadow-sm overflow-hidden">
             <!-- Main Image -->
             <div class="relative">
-            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop" alt="Blue Audi" class="w-full h-96 object-cover">
+            <img id="main-image" src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop" alt="Blue Audi" class="w-full h-96 object-cover transition-opacity duration-200">
             <button class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 hover:bg-gray-50 transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -85,10 +85,10 @@
 
             <!-- Thumbnail Gallery -->
             <div class="p-4 flex gap-3 overflow-x-auto">
-            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=150&h=100&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-red-500">
-            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f1ea8?w=150&h=100&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
-            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=150&h=100&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
-            <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=150&h=100&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
+            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-red-500">
+            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f1ea8?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1614162692292-7ac56d7f1ea8?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
+            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
+            <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
             </div>
         </div>
 
@@ -96,97 +96,116 @@
         <div class="bg-white rounded-lg shadow-sm p-6">
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-xl font-bold text-gray-900">Description</h2>
-                <button class="toggle-btn text-gray-500 hover:text-gray-700 transition" data-target="#description-content">
-                    <svg class="w-5 h-5 transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button class="toggle-btn text-gray-500 hover:text-gray-700 transition" data-target="#description-content" aria-expanded="true" aria-controls="description-content">
+                    <svg class="toggle-icon w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
                     </svg>
                 </button>
             </div>
-            <div id="description-content" class="collapse-content open">
-                <p class="text-gray-600 leading-relaxed">
-                Kicking off on April 1, 2025, the "DreamTour" will take Luna to major cities across North America and Europe, including Los Angeles, New York, Chicago, Toronto, and London. Each concert will showcase her unique blend of pop and ethereal soundscapes, bringing her music to life in a way you've never seen before.
-                </p>
-                <button class="text-red-500 font-medium mt-3 hover:text-red-600">Show More</button>
+            <div id="description-content" class="collapse-content open" role="region">
+                <div id="description-text" class="text-gray-600 leading-relaxed clamped">
+                    Kicking off on April 1, 2025, the "DreamTour" will take Luna to major cities across North America and Europe, including Los Angeles, New York, Chicago, Toronto, and London. Each concert will showcase her unique blend of pop and ethereal soundscapes, bringing her music to life in a way you've never seen before.
+                </div>
+                <button class="show-more-btn text-red-500 font-medium mt-3 hover:text-red-600" data-target="#description-text" aria-expanded="false">Show More</button>
             </div>
         </div>
 
         <!-- Specification Section -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow-sm p-6">
             <div class="flex items-center justify-between mb-6">
             <h2 class="text-xl font-bold text-gray-900">Specification</h2>
-            <button class="text-gray-500 hover:text-gray-700">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button class="toggle-btn text-gray-500 hover:text-gray-700" data-target="#specs-content" aria-expanded="true" aria-controls="specs-content">
+                <svg class="toggle-icon w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
                 </svg>
             </button>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Specification Items -->
-            <template x-for="(spec, index) in [
-                {label: 'Transmission', value: 'Auto', icon: 'M13 10V3L4 14h7v7l9-11h-7z'},
-                {label: 'Mileage', value: '24 KMS', icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z'},
-                {label: 'Steering', value: 'Auto', icon: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4'},
-                {label: 'Make', value: 'Audi', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'},
-                {label: 'Model Year', value: '2019', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'},
-                {label: 'Brake', value: 'ABS', icon: 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'},
-                {label: 'Body', value: 'Sedan', icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'},
-                {label: 'AC', value: 'Air Conditioned', icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z'},
-                {label: 'Engine (Hp)', value: '3,000', icon: 'M13 10V3L4 14h7v7l9-11h-7z'},
-                {label: 'Fuel Type', value: 'Diesel', icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'},
-                {label: 'Doors', value: '4', icon: 'M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z'},
-                {label: 'Access', value: 'Remote', icon: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'}
-            ]" :key="index">
-            </template>
+            <div id="specs-content" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 collapse-content open" role="region">
+            <!-- Specification Items (server-rendered so they appear without Alpine) -->
+            @php
+                $specs = [
+                    ['label' => 'Transmission', 'value' => 'Auto', 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
+                    ['label' => 'Mileage', 'value' => '24 KMS', 'icon' => 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z'],
+                    ['label' => 'Steering', 'value' => 'Auto', 'icon' => 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4'],
+                    ['label' => 'Make', 'value' => 'Audi', 'icon' => 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'],
+                    ['label' => 'Model Year', 'value' => '2019', 'icon' => 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'],
+                    ['label' => 'Brake', 'value' => 'ABS', 'icon' => 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
+                    ['label' => 'Body', 'value' => 'Sedan', 'icon' => 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'],
+                    ['label' => 'AC', 'value' => 'Air Conditioned', 'icon' => 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z'],
+                    ['label' => 'Engine (Hp)', 'value' => '3,000', 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
+                    ['label' => 'Fuel Type', 'value' => 'Diesel', 'icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'],
+                    ['label' => 'Doors', 'value' => '4', 'icon' => 'M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z'],
+                    ['label' => 'Access', 'value' => 'Remote', 'icon' => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z']
+                ];
+            @endphp
+
+            @foreach($specs as $spec)
+                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div class="p-3 bg-red-50 rounded-lg flex-shrink-0">
+                        <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="{{ $spec['icon'] }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-600">{{ $spec['label'] }}</div>
+                        <div class="text-sm font-semibold text-gray-900">{{ $spec['value'] }}</div>
+                    </div>
+                </div>
+            @endforeach
             </div>
         </div>
 
         <!-- FAQ Section -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow-sm p-6">
             <div class="flex items-center justify-between mb-6">
             <h2 class="text-xl font-bold text-gray-900">FAQ</h2>
-            <button class="text-gray-500 hover:text-gray-700">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button class="toggle-btn text-gray-500 hover:text-gray-700" data-target="#faq-content" aria-expanded="true" aria-controls="faq-content">
+                <svg class="toggle-icon w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
                 </svg>
             </button>
             </div>
 
-            <div class="space-y-4">
+            <div id="faq-content" class="space-y-4 collapse-content open" role="region">
             <div class="border-b pb-4">
-                <button class="w-full flex items-center justify-between text-left hover:text-red-500 transition">
+                <button class="faq-item w-full flex items-center justify-between text-left hover:text-red-500 transition" data-target="#faq1" aria-expanded="false" aria-controls="faq1">
                 <span class="font-semibold text-gray-900">What documents do I need to rent a car?</span>
-                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2 toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
                 </button>
+                <div id="faq1" class="mt-3 text-gray-600 hidden" role="region">You need a valid driving license, ID/passport, and a credit card for security deposit.</div>
             </div>
 
             <div class="border-b pb-4">
-                <button class="w-full flex items-center justify-between text-left hover:text-red-500 transition">
+                <button class="faq-item w-full flex items-center justify-between text-left hover:text-red-500 transition" data-target="#faq2" aria-expanded="false" aria-controls="faq2">
                 <span class="font-semibold text-gray-900">Is insurance included in the rental price?</span>
-                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2 toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
                 </button>
+                <div id="faq2" class="mt-3 text-gray-600 hidden" role="region">Basic insurance is included. Additional coverage is available at a supplementary cost.</div>
             </div>
 
             <div class="border-b pb-4">
-                <button class="w-full flex items-center justify-between text-left hover:text-red-500 transition">
+                <button class="faq-item w-full flex items-center justify-between text-left hover:text-red-500 transition" data-target="#faq3" aria-expanded="false" aria-controls="faq3">
                 <span class="font-semibold text-gray-900">Can I add additional drivers?</span>
-                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2 toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
                 </button>
+                <div id="faq3" class="mt-3 text-gray-600 hidden" role="region">Yes, additional drivers can be added if they meet our licensing and age requirements.</div>
             </div>
 
             <div class="pb-4">
-                <button class="w-full flex items-center justify-between text-left hover:text-red-500 transition">
+                <button class="faq-item w-full flex items-center justify-between text-left hover:text-red-500 transition" data-target="#faq4" aria-expanded="false" aria-controls="faq4">
                 <span class="font-semibold text-gray-900">What is your cancellation policy?</span>
-                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2 toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
                 </button>
+                <div id="faq4" class="mt-3 text-gray-600 hidden" role="region">Cancellations made 48 hours before pickup are fully refundable. Later cancellations may incur fees.</div>
             </div>
             </div>
         </div>
@@ -324,20 +343,179 @@
     </div>
 </div>
 <script>
-    document.querySelectorAll('.toggle-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetSelector = btn.getAttribute('data-target');
-        const content = document.querySelector(targetSelector);
-        const icon = btn.querySelector('svg');
+        (function () {
+            // Smooth collapse/expand using max-height transitions
+            function ensureTransition(el) {
+                el.style.overflow = 'hidden';
+                el.style.transition = 'max-height 300ms ease';
+            }
 
-        if (!content) return;
+            function openElement(el) {
+                if (!el) return;
+                ensureTransition(el);
+                el.classList.remove('hidden');
+                // Force a reflow so the transition runs
+                el.style.maxHeight = '0px';
+                requestAnimationFrame(() => {
+                    el.style.maxHeight = el.scrollHeight + 'px';
+                });
+                el.classList.add('open');
+                // after transition, clear max-height so it can grow naturally
+                const cleanup = () => {
+                    el.style.maxHeight = 'none';
+                    el.removeEventListener('transitionend', cleanup);
+                };
+                el.addEventListener('transitionend', cleanup);
+            }
 
-        // Toggle open/close animation
-        content.classList.toggle('open');
+            function closeElement(el) {
+                if (!el) return;
+                ensureTransition(el);
+                // from current height to 0
+                el.style.maxHeight = el.scrollHeight + 'px';
+                requestAnimationFrame(() => {
+                    el.style.maxHeight = '0px';
+                });
+                el.classList.remove('open');
+                el.addEventListener('transitionend', function handler() {
+                    el.classList.add('hidden');
+                    el.removeEventListener('transitionend', handler);
+                });
+            }
 
-        // Rotate the arrow
-        icon.classList.toggle('rotate-180');
-      });
-    });
-  </script>
+            function toggleSection(button, el) {
+                if (!el) return;
+                const isOpen = el.classList.contains('open');
+                if (isOpen) {
+                    closeElement(el);
+                    button.setAttribute('aria-expanded', 'false');
+                } else {
+                    openElement(el);
+                    button.setAttribute('aria-expanded', 'true');
+                }
+                const icon = button.querySelector('.toggle-icon');
+                if (icon) icon.classList.toggle('rotate-180', !isOpen);
+            }
+
+            // Wire section toggles
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetSelector = btn.getAttribute('data-target');
+                    const content = document.querySelector(targetSelector);
+                    toggleSection(btn, content);
+                });
+            });
+
+            // FAQ item toggles: treat each FAQ answer as a collapsible
+            document.querySelectorAll('.faq-item').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetSelector = btn.getAttribute('data-target');
+                    const content = document.querySelector(targetSelector);
+                    if (!content) return;
+
+                    const isOpen = content.classList.contains('open');
+                    if (isOpen) {
+                        closeElement(content);
+                        btn.setAttribute('aria-expanded', 'false');
+                    } else {
+                        openElement(content);
+                        btn.setAttribute('aria-expanded', 'true');
+                    }
+
+                    const icon = btn.querySelector('.toggle-icon');
+                    if (icon) icon.classList.toggle('rotate-180', !isOpen);
+                });
+            });
+
+            // Initialization: set up collapse elements
+            document.querySelectorAll('.collapse-content').forEach(el => {
+                // ensure transition styles
+                ensureTransition(el);
+                if (el.classList.contains('open')) {
+                    // open to its full height
+                    el.classList.remove('hidden');
+                    el.style.maxHeight = el.scrollHeight + 'px';
+                    // then clear inline maxHeight after transition
+                    el.addEventListener('transitionend', function once() {
+                        el.style.maxHeight = 'none';
+                        el.removeEventListener('transitionend', once);
+                    });
+                } else {
+                    el.classList.add('hidden');
+                    el.style.maxHeight = '0px';
+                }
+            });
+
+            // Description show-more: compute collapsed height (3 lines) and animate
+            function getLineHeightPx(el) {
+                const cs = getComputedStyle(el);
+                let lh = parseFloat(cs.lineHeight);
+                if (isNaN(lh)) {
+                    // fallback to 1.2 * font-size
+                    lh = parseFloat(cs.fontSize) * 1.2;
+                }
+                return lh;
+            }
+
+            document.querySelectorAll('.show-more-btn').forEach(btn => {
+                const target = document.querySelector(btn.getAttribute('data-target'));
+                if (!target) return;
+                ensureTransition(target);
+
+                const collapsedHeight = Math.round(getLineHeightPx(target) * 3);
+                // initialize to collapsed
+                target.style.maxHeight = collapsedHeight + 'px';
+                target.classList.add('clamped');
+                btn.setAttribute('aria-expanded', 'false');
+
+                btn.addEventListener('click', () => {
+                    const isCollapsed = target.classList.contains('clamped');
+                    if (isCollapsed) {
+                        // expand
+                        target.classList.remove('clamped');
+                        openElement(target);
+                        btn.textContent = 'Show Less';
+                        btn.setAttribute('aria-expanded', 'true');
+                    } else {
+                        // collapse back to 3 lines
+                        btn.textContent = 'Show More';
+                        btn.setAttribute('aria-expanded', 'false');
+                        // set explicit maxHeight to current scrollHeight then animate to collapsedHeight
+                        target.style.maxHeight = target.scrollHeight + 'px';
+                        requestAnimationFrame(() => {
+                            target.style.maxHeight = collapsedHeight + 'px';
+                        });
+                        target.classList.add('clamped');
+                        target.classList.remove('open');
+                    }
+                });
+            });
+
+            // Thumbnail click -> swap main image with smooth fade
+            const mainImage = document.getElementById('main-image');
+            if (mainImage) {
+                document.querySelectorAll('.thumbnail').forEach(thumb => {
+                    thumb.addEventListener('click', () => {
+                        const large = thumb.getAttribute('data-large') || thumb.src;
+                        if (!large) return;
+
+                        // highlight selected thumbnail
+                        document.querySelectorAll('.thumbnail').forEach(t => {
+                            t.classList.remove('border-red-500');
+                            t.classList.add('border-transparent');
+                        });
+                        thumb.classList.add('border-red-500');
+
+                        // fade out main image, swap src, fade in
+                        mainImage.style.transition = 'opacity 150ms ease';
+                        mainImage.style.opacity = '0';
+                        setTimeout(() => {
+                            mainImage.src = large;
+                            mainImage.style.opacity = '1';
+                        }, 160);
+                    });
+                });
+            }
+        })();
+    </script>
 @endsection
