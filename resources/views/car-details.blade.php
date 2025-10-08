@@ -8,7 +8,7 @@
     <div class="absolute inset-0 bg-black/60 z-10"></div>
     <div class="absolute inset-0 opacity-70" style="background-image: url('https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop'); background-size: cover; background-position: center; filter: blur(2px);"></div>
     
-    <div class="max-w-7xl container mx-auto relative z-20 py-16 md:py-24 px-6">
+    <div class="max-w-6xl container mx-auto relative z-20 py-16 md:py-24 px-6">
         {{-- Breadcrumb --}}
         <nav aria-label="Breadcrumb" class="mb-6">
             <ol class="flex items-center space-x-2 text-sm font-light text-gray-300">
@@ -514,237 +514,237 @@
     </div>
 
 <script>
-        (function () {
-            // Smooth collapse/expand using max-height transitions
-            function ensureTransition(el) {
-                el.style.overflow = 'hidden';
-                el.style.transition = 'max-height 300ms ease';
-            }
+    (function () {
+        // Smooth collapse/expand using max-height transitions
+        function ensureTransition(el) {
+            el.style.overflow = 'hidden';
+            el.style.transition = 'max-height 300ms ease';
+        }
 
-            function openElement(el) {
-                if (!el) return;
-                ensureTransition(el);
-                el.classList.remove('hidden');
-                // Force a reflow so the transition runs
-                el.style.maxHeight = '0px';
-                requestAnimationFrame(() => {
-                    el.style.maxHeight = el.scrollHeight + 'px';
-                });
-                el.classList.add('open');
-                // after transition, clear max-height so it can grow naturally
-                const cleanup = () => {
-                    el.style.maxHeight = 'none';
-                    el.removeEventListener('transitionend', cleanup);
-                };
-                el.addEventListener('transitionend', cleanup);
-            }
-
-            function closeElement(el) {
-                if (!el) return;
-                ensureTransition(el);
-                // from current height to 0
+        function openElement(el) {
+            if (!el) return;
+            ensureTransition(el);
+            el.classList.remove('hidden');
+            // Force a reflow so the transition runs
+            el.style.maxHeight = '0px';
+            requestAnimationFrame(() => {
                 el.style.maxHeight = el.scrollHeight + 'px';
-                requestAnimationFrame(() => {
-                    el.style.maxHeight = '0px';
-                });
-                el.classList.remove('open');
-                el.addEventListener('transitionend', function handler() {
-                    el.classList.add('hidden');
-                    el.removeEventListener('transitionend', handler);
-                });
-            }
+            });
+            el.classList.add('open');
+            // after transition, clear max-height so it can grow naturally
+            const cleanup = () => {
+                el.style.maxHeight = 'none';
+                el.removeEventListener('transitionend', cleanup);
+            };
+            el.addEventListener('transitionend', cleanup);
+        }
 
-            function toggleSection(button, el) {
-                if (!el) return;
-                const isOpen = el.classList.contains('open');
+        function closeElement(el) {
+            if (!el) return;
+            ensureTransition(el);
+            // from current height to 0
+            el.style.maxHeight = el.scrollHeight + 'px';
+            requestAnimationFrame(() => {
+                el.style.maxHeight = '0px';
+            });
+            el.classList.remove('open');
+            el.addEventListener('transitionend', function handler() {
+                el.classList.add('hidden');
+                el.removeEventListener('transitionend', handler);
+            });
+        }
+
+        function toggleSection(button, el) {
+            if (!el) return;
+            const isOpen = el.classList.contains('open');
+            if (isOpen) {
+                closeElement(el);
+                button.setAttribute('aria-expanded', 'false');
+            } else {
+                openElement(el);
+                button.setAttribute('aria-expanded', 'true');
+            }
+            const icon = button.querySelector('.toggle-icon');
+            if (icon) icon.classList.toggle('rotate-180', !isOpen);
+        }
+
+        // Wire section toggles
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetSelector = btn.getAttribute('data-target');
+                const content = document.querySelector(targetSelector);
+                toggleSection(btn, content);
+            });
+        });
+
+        // FAQ item toggles: treat each FAQ answer as a collapsible
+        document.querySelectorAll('.faq-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetSelector = btn.getAttribute('data-target');
+                const content = document.querySelector(targetSelector);
+                if (!content) return;
+
+                const isOpen = content.classList.contains('open');
                 if (isOpen) {
-                    closeElement(el);
-                    button.setAttribute('aria-expanded', 'false');
+                    closeElement(content);
+                    btn.setAttribute('aria-expanded', 'false');
                 } else {
-                    openElement(el);
-                    button.setAttribute('aria-expanded', 'true');
+                    openElement(content);
+                    btn.setAttribute('aria-expanded', 'true');
                 }
-                const icon = button.querySelector('.toggle-icon');
+
+                const icon = btn.querySelector('.toggle-icon');
                 if (icon) icon.classList.toggle('rotate-180', !isOpen);
+            });
+        });
+
+        // Initialization: set up collapse elements
+        document.querySelectorAll('.collapse-content').forEach(el => {
+            // ensure transition styles
+            ensureTransition(el);
+            if (el.classList.contains('open')) {
+                // open to its full height
+                el.classList.remove('hidden');
+                el.style.maxHeight = el.scrollHeight + 'px';
+                // then clear inline maxHeight after transition
+                el.addEventListener('transitionend', function once() {
+                    el.style.maxHeight = 'none';
+                    el.removeEventListener('transitionend', once);
+                });
+            } else {
+                el.classList.add('hidden');
+                el.style.maxHeight = '0px';
             }
+        });
 
-            // Wire section toggles
-            document.querySelectorAll('.toggle-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const targetSelector = btn.getAttribute('data-target');
-                    const content = document.querySelector(targetSelector);
-                    toggleSection(btn, content);
-                });
-            });
+        // Description show-more: compute collapsed height (3 lines) and animate
+        function getLineHeightPx(el) {
+            const cs = getComputedStyle(el);
+            let lh = parseFloat(cs.lineHeight);
+            if (isNaN(lh)) {
+                // fallback to 1.2 * font-size
+                lh = parseFloat(cs.fontSize) * 1.2;
+            }
+            return lh;
+        }
 
-            // FAQ item toggles: treat each FAQ answer as a collapsible
-            document.querySelectorAll('.faq-item').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const targetSelector = btn.getAttribute('data-target');
-                    const content = document.querySelector(targetSelector);
-                    if (!content) return;
+        document.querySelectorAll('.show-more-btn').forEach(btn => {
+            const target = document.querySelector(btn.getAttribute('data-target'));
+            if (!target) return;
+            ensureTransition(target);
 
-                    const isOpen = content.classList.contains('open');
-                    if (isOpen) {
-                        closeElement(content);
-                        btn.setAttribute('aria-expanded', 'false');
-                    } else {
-                        openElement(content);
-                        btn.setAttribute('aria-expanded', 'true');
-                    }
+            const collapsedHeight = Math.round(getLineHeightPx(target) * 3);
+            // initialize to collapsed
+            target.style.maxHeight = collapsedHeight + 'px';
+            target.classList.add('clamped');
+            btn.setAttribute('aria-expanded', 'false');
 
-                    const icon = btn.querySelector('.toggle-icon');
-                    if (icon) icon.classList.toggle('rotate-180', !isOpen);
-                });
-            });
-
-            // Initialization: set up collapse elements
-            document.querySelectorAll('.collapse-content').forEach(el => {
-                // ensure transition styles
-                ensureTransition(el);
-                if (el.classList.contains('open')) {
-                    // open to its full height
-                    el.classList.remove('hidden');
-                    el.style.maxHeight = el.scrollHeight + 'px';
-                    // then clear inline maxHeight after transition
-                    el.addEventListener('transitionend', function once() {
-                        el.style.maxHeight = 'none';
-                        el.removeEventListener('transitionend', once);
-                    });
+            btn.addEventListener('click', () => {
+                const isCollapsed = target.classList.contains('clamped');
+                if (isCollapsed) {
+                    // expand
+                    target.classList.remove('clamped');
+                    openElement(target);
+                    btn.textContent = 'Show Less';
+                    btn.setAttribute('aria-expanded', 'true');
                 } else {
-                    el.classList.add('hidden');
-                    el.style.maxHeight = '0px';
-                }
-            });
-
-            // Description show-more: compute collapsed height (3 lines) and animate
-            function getLineHeightPx(el) {
-                const cs = getComputedStyle(el);
-                let lh = parseFloat(cs.lineHeight);
-                if (isNaN(lh)) {
-                    // fallback to 1.2 * font-size
-                    lh = parseFloat(cs.fontSize) * 1.2;
-                }
-                return lh;
-            }
-
-            document.querySelectorAll('.show-more-btn').forEach(btn => {
-                const target = document.querySelector(btn.getAttribute('data-target'));
-                if (!target) return;
-                ensureTransition(target);
-
-                const collapsedHeight = Math.round(getLineHeightPx(target) * 3);
-                // initialize to collapsed
-                target.style.maxHeight = collapsedHeight + 'px';
-                target.classList.add('clamped');
-                btn.setAttribute('aria-expanded', 'false');
-
-                btn.addEventListener('click', () => {
-                    const isCollapsed = target.classList.contains('clamped');
-                    if (isCollapsed) {
-                        // expand
-                        target.classList.remove('clamped');
-                        openElement(target);
-                        btn.textContent = 'Show Less';
-                        btn.setAttribute('aria-expanded', 'true');
-                    } else {
-                        // collapse back to 3 lines
-                        btn.textContent = 'Show More';
-                        btn.setAttribute('aria-expanded', 'false');
-                        // set explicit maxHeight to current scrollHeight then animate to collapsedHeight
-                        target.style.maxHeight = target.scrollHeight + 'px';
-                        requestAnimationFrame(() => {
-                            target.style.maxHeight = collapsedHeight + 'px';
-                        });
-                        target.classList.add('clamped');
-                        target.classList.remove('open');
-                    }
-                });
-            });
-
-            // Thumbnail click -> swap main image with smooth fade
-            const mainImage = document.getElementById('main-image');
-            if (mainImage) {
-                document.querySelectorAll('.thumbnail').forEach(thumb => {
-                    thumb.addEventListener('click', () => {
-                        const large = thumb.getAttribute('data-large') || thumb.src;
-                        if (!large) return;
-
-                        // highlight selected thumbnail
-                        document.querySelectorAll('.thumbnail').forEach(t => {
-                            t.classList.remove('border-red-500');
-                            t.classList.add('border-transparent');
-                        });
-                        thumb.classList.add('border-red-500');
-
-                        // fade out main image, swap src, fade in
-                        mainImage.style.transition = 'opacity 150ms ease';
-                        mainImage.style.opacity = '0';
-                        setTimeout(() => {
-                            mainImage.src = large;
-                            mainImage.style.opacity = '1';
-                        }, 160);
+                    // collapse back to 3 lines
+                    btn.textContent = 'Show More';
+                    btn.setAttribute('aria-expanded', 'false');
+                    // set explicit maxHeight to current scrollHeight then animate to collapsedHeight
+                    target.style.maxHeight = target.scrollHeight + 'px';
+                    requestAnimationFrame(() => {
+                        target.style.maxHeight = collapsedHeight + 'px';
                     });
-                });
-            }
-
-            // Lightbox / modal image viewer
-            const modal = document.getElementById('image-modal');
-            const modalImage = document.getElementById('modal-image');
-            const modalPrev = document.getElementById('modal-prev');
-            const modalNext = document.getElementById('modal-next');
-            const modalClose = document.getElementById('modal-close');
-            const seeAllBtn = document.getElementById('see-all-btn');
-
-            // collect images from thumbnails
-            const gallery = Array.from(document.querySelectorAll('.thumbnail')).map(t => t.getAttribute('data-large') || t.src);
-            let currentIndex = 0;
-
-            function openModal(index) {
-                if (!modal) return;
-                currentIndex = (index + gallery.length) % gallery.length;
-                modalImage.style.opacity = '0';
-                modal.classList.remove('hidden');
-                modal.setAttribute('aria-hidden', 'false');
-                // small timeout to allow display then load image
-                setTimeout(() => {
-                    modalImage.src = gallery[currentIndex];
-                    modalImage.onload = () => { modalImage.style.opacity = '1'; };
-                }, 50);
-            }
-
-            function closeModal() {
-                if (!modal) return;
-                modal.classList.add('hidden');
-                modal.setAttribute('aria-hidden', 'true');
-                modalImage.src = '';
-            }
-
-            function showNext() { openModal(currentIndex + 1); }
-            function showPrev() { openModal(currentIndex - 1); }
-
-            if (seeAllBtn) {
-                seeAllBtn.addEventListener('click', () => openModal(0));
-            }
-
-            if (modalClose) modalClose.addEventListener('click', closeModal);
-            if (modalNext) modalNext.addEventListener('click', showNext);
-            if (modalPrev) modalPrev.addEventListener('click', showPrev);
-
-            // click outside image closes
-            if (modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) closeModal();
-                });
-            }
-
-            // keyboard support
-            document.addEventListener('keydown', (e) => {
-                if (!modal || modal.classList.contains('hidden')) return;
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowRight') showNext();
-                if (e.key === 'ArrowLeft') showPrev();
+                    target.classList.add('clamped');
+                    target.classList.remove('open');
+                }
             });
-        })();
-    </script>
+        });
+
+        // Thumbnail click -> swap main image with smooth fade
+        const mainImage = document.getElementById('main-image');
+        if (mainImage) {
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    const large = thumb.getAttribute('data-large') || thumb.src;
+                    if (!large) return;
+
+                    // highlight selected thumbnail
+                    document.querySelectorAll('.thumbnail').forEach(t => {
+                        t.classList.remove('border-red-500');
+                        t.classList.add('border-transparent');
+                    });
+                    thumb.classList.add('border-red-500');
+
+                    // fade out main image, swap src, fade in
+                    mainImage.style.transition = 'opacity 150ms ease';
+                    mainImage.style.opacity = '0';
+                    setTimeout(() => {
+                        mainImage.src = large;
+                        mainImage.style.opacity = '1';
+                    }, 160);
+                });
+            });
+        }
+
+        // Lightbox / modal image viewer
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalPrev = document.getElementById('modal-prev');
+        const modalNext = document.getElementById('modal-next');
+        const modalClose = document.getElementById('modal-close');
+        const seeAllBtn = document.getElementById('see-all-btn');
+
+        // collect images from thumbnails
+        const gallery = Array.from(document.querySelectorAll('.thumbnail')).map(t => t.getAttribute('data-large') || t.src);
+        let currentIndex = 0;
+
+        function openModal(index) {
+            if (!modal) return;
+            currentIndex = (index + gallery.length) % gallery.length;
+            modalImage.style.opacity = '0';
+            modal.classList.remove('hidden');
+            modal.setAttribute('aria-hidden', 'false');
+            // small timeout to allow display then load image
+            setTimeout(() => {
+                modalImage.src = gallery[currentIndex];
+                modalImage.onload = () => { modalImage.style.opacity = '1'; };
+            }, 50);
+        }
+
+        function closeModal() {
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.setAttribute('aria-hidden', 'true');
+            modalImage.src = '';
+        }
+
+        function showNext() { openModal(currentIndex + 1); }
+        function showPrev() { openModal(currentIndex - 1); }
+
+        if (seeAllBtn) {
+            seeAllBtn.addEventListener('click', () => openModal(0));
+        }
+
+        if (modalClose) modalClose.addEventListener('click', closeModal);
+        if (modalNext) modalNext.addEventListener('click', showNext);
+        if (modalPrev) modalPrev.addEventListener('click', showPrev);
+
+        // click outside image closes
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+        }
+
+        // keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (!modal || modal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        });
+    })();
+</script>
 @endsection
