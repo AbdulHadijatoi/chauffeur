@@ -8,7 +8,7 @@
     <div class="absolute inset-0 bg-black/60 z-10"></div>
     <div class="absolute inset-0 opacity-70" style="background-image: url('https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop'); background-size: cover; background-position: center; filter: blur(2px);"></div>
     
-    <div class="max-w-6xl container mx-auto relative z-20 py-16 md:py-24 px-6">
+    <div class="max-w-6xl container mx-auto relative z-20 py-6 md:py-6 px-6">
         {{-- Breadcrumb --}}
         <nav aria-label="Breadcrumb" class="mb-6">
             <ol class="flex items-center space-x-2 text-sm font-light text-gray-300">
@@ -56,21 +56,6 @@
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
             Luxury Chauffeur Service in Dubai
         </h1>
-        
-        <p class="text-xl md:text-2xl text-gray-200 mb-6 font-light">
-            Professional Driver for 10-Hour Hire
-        </p>
-        <p class="text-gray-300 text-base md:text-lg max-w-2xl leading-relaxed">
-            Experience unparalleled comfort and style with our premium chauffeur service, available in Dubai starting April 1, 2025.
-        </p>
-
-        {{-- CTA Button --}}
-        <div class="mt-8">
-            <!-- data-car="Nissan Patrol Titanium 2023" class="quote-btn quote-btn-mobile flex-1 sm:flex-none sm:min-w-[160px] bg-primary text-white font-bold py-2.5 px-6 rounded-full text-sm" -->
-            <a data-car="Nissan Patrol Titanium 2023" href="#booking" class="quote-btn quote-btn-mobile inline-block bg-white text-black px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-xl">
-                Book Your Ride
-            </a>
-        </div>
     </div>
 </section>
 
