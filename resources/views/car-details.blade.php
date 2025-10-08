@@ -4,13 +4,10 @@
 
 @section('content')
 
-<section class="relative bg-gradient-to-br from-gray-900 to-black text-white overflow-hidden">
-    <div class="absolute inset-0 bg-black/60 z-10"></div>
-    <div class="absolute inset-0 opacity-70" style="background-image: url('https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop'); background-size: cover; background-position: center; filter: blur(2px);"></div>
-    
-    <div class="max-w-6xl container mx-auto relative z-20 py-6 md:py-6 px-6">
-        {{-- Breadcrumb --}}
-        <nav aria-label="Breadcrumb" class="mb-6">
+
+    <!-- <div class="max-w-6xl container mx-auto relative z-20 py-6 md:py-6 px-6">
+    {{-- Breadcrumb --}}
+        <nav aria-label="Breadcrumb">
             <ol class="flex items-center space-x-2 text-sm font-light text-gray-300">
                 <li class="flex items-center">
                     <a href="{{ url('/') }}" class="hover:text-white transition-colors duration-300 flex items-center">
@@ -50,14 +47,9 @@
                     </li>
                 @endforeach
             </ol>
-        </nav>
+        </nav>        
+    </div> -->
 
-        {{-- Page Heading --}}
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
-            Luxury Chauffeur Service in Dubai
-        </h1>
-    </div>
-</section>
 
 <!-- Main Content -->
 <div class="max-w-6xl container mx-auto px-4 pb-12 mt-10">
