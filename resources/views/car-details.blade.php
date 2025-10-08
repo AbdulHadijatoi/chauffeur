@@ -4,19 +4,21 @@
 
 @section('content')
 
-<section class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4 mb-12">
-    <div class="absolute inset-0 bg-black/50 z-10"></div>
-    <div class="absolute inset-0 opacity-50" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
+<section class="relative bg-gradient-to-br from-gray-900 to-black text-white overflow-hidden">
+    <div class="absolute inset-0 bg-black/60 z-10"></div>
+    <div class="absolute inset-0 opacity-70" style="background-image: url('https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop'); background-size: cover; background-position: center; filter: blur(2px);"></div>
     
-    <div class="max-w-6xl container mx-auto relative z-10 py-8 md:py-5">
+    <div class="max-w-7xl container mx-auto relative z-20 py-16 md:py-24 px-6">
         {{-- Breadcrumb --}}
-        <nav aria-label="Breadcrumb" class="mb-4">
-            <ol class="flex items-center flex-wrap text-sm">
+        <nav aria-label="Breadcrumb" class="mb-6">
+            <ol class="flex items-center space-x-2 text-sm font-light text-gray-300">
                 <li class="flex items-center">
-                    <a href="{{ url('/') }}" class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
-                        <i class="fas fa-home"></i>
+                    <a href="{{ url('/') }}" class="hover:text-white transition-colors duration-300 flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
                     </a>
-
                 </li>
 
                 @php
@@ -32,8 +34,8 @@
                     @endphp
 
                     <li class="flex items-center">
-                        <svg class="w-4 h-4 mx-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        <svg class="w-4 h-4 mx-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
 
                         @if($isLast)
@@ -41,7 +43,7 @@
                                 {{ $title }}
                             </span>
                         @else
-                            <a href="{{ url($url) }}" class="text-gray-300 hover:text-white transition-colors duration-200">
+                            <a href="{{ url($url) }}" class="hover:text-white transition-colors duration-300">
                                 {{ $title }}
                             </a>
                         @endif
@@ -51,21 +53,29 @@
         </nav>
 
         {{-- Page Heading --}}
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
-            Car With Driver in Dubai For 10 Hours
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+            Luxury Chauffeur Service in Dubai
         </h1>
         
-        <p class="text-gray-200 text-lg md:text-xl mb-2">
-            Professional Chauffeur Hire Dubai
+        <p class="text-xl md:text-2xl text-gray-200 mb-6 font-light">
+            Professional Driver for 10-Hour Hire
         </p>
-        <p class="text-gray-300 text-sm md:text-base max-w-3xl">
-            Kicking off on April 1, 2025, the "DreamTour" will take Luna to major cities across North America and Europe.
+        <p class="text-gray-300 text-base md:text-lg max-w-2xl leading-relaxed">
+            Experience unparalleled comfort and style with our premium chauffeur service, available in Dubai starting April 1, 2025.
         </p>
+
+        {{-- CTA Button --}}
+        <div class="mt-8">
+            <!-- data-car="Nissan Patrol Titanium 2023" class="quote-btn quote-btn-mobile flex-1 sm:flex-none sm:min-w-[160px] bg-primary text-white font-bold py-2.5 px-6 rounded-full text-sm" -->
+            <a data-car="Nissan Patrol Titanium 2023" href="#booking" class="quote-btn quote-btn-mobile inline-block bg-white text-black px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-xl">
+                Book Your Ride
+            </a>
+        </div>
     </div>
 </section>
 
 <!-- Main Content -->
-<div class="max-w-6xl container mx-auto px-4 pb-12 mt-0">
+<div class="max-w-6xl container mx-auto px-4 pb-12 mt-10">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Left Column - Main Content -->
         <div class="lg:col-span-2 space-y-6">
@@ -85,10 +95,10 @@
 
             <!-- Thumbnail Gallery -->
             <div class="p-4 flex gap-3 overflow-x-auto">
-            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-red-500">
-            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f1ea8?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1614162692292-7ac56d7f1ea8?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
-            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
-            <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-gray-300">
+            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-yellow-500">
+            <img src="https://images.unsplash.com/photo-1614162692291-7ac56d7f1ea8?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1614162692292-7ac56d7f1ea8?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-yellow-300">
+            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-yellow-300">
+            <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-yellow-300">
             </div>
 
             <!-- Image Modal / Lightbox -->
@@ -152,8 +162,8 @@
 
             @foreach($specs as $spec)
                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <div class="p-3 bg-red-50 rounded-lg flex-shrink-0">
-                        <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="p-3 bg-orange-100 rounded-lg flex-shrink-0">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path d="{{ $spec['icon'] }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                         </svg>
                     </div>
@@ -231,7 +241,7 @@
                 <div class="space-y-4">
                     <div class="flex items-start gap-3">
                         <div class="p-2 bg-blue-50 rounded-lg flex-shrink-0">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
@@ -243,7 +253,7 @@
 
                     <div class="flex items-start gap-3">
                         <div class="p-2 bg-blue-50 rounded-lg flex-shrink-0">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
@@ -255,7 +265,7 @@
 
                     <div class="flex items-start gap-3">
                         <div class="p-2 bg-blue-50 rounded-lg flex-shrink-0">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
                             </svg>
                         </div>
@@ -267,7 +277,7 @@
 
                     <div class="flex items-start gap-3">
                         <div class="p-2 bg-blue-50 rounded-lg flex-shrink-0">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
                             </svg>
                         </div>
@@ -279,7 +289,7 @@
 
                     <div class="flex items-start gap-3">
                         <div class="p-2 bg-blue-50 rounded-lg flex-shrink-0">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
                             </svg>
                         </div>
@@ -296,7 +306,7 @@
                 <h2 class="text-xl font-bold text-gray-900 mb-6">Contact Us for more details</h2>
                 
                 <div class="flex items-start gap-3 mb-6">
-                    <img src="https://ui-avatars.com/api/?name=Adrian+Henriques&background=ef4444&color=fff" alt="Adrian Henriques" class="w-12 h-12 rounded-full flex-shrink-0">
+                    <img src="https://ui-avatars.com/api/?name=Adrian+Henriques&background=C7A240&color=fff" alt="Adrian Henriques" class="w-12 h-12 rounded-full flex-shrink-0">
                     <div>
                         <h3 class="font-semibold text-gray-900">Adrian Henriques</h3>
                         <p class="text-sm text-gray-500">Member Since • 14 May 2024</p>
@@ -305,8 +315,8 @@
 
                 <div class="space-y-3">
                     <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="p-2 bg-red-100 rounded-lg flex-shrink-0">
-                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="p-2 bg-orange-100 rounded-lg flex-shrink-0">
+                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                             </svg>
                         </div>
@@ -314,8 +324,8 @@
                     </div>
 
                     <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="p-2 bg-red-100 rounded-lg flex-shrink-0">
-                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="p-2 bg-orange-100 rounded-lg flex-shrink-0">
+                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                         </div>
@@ -323,8 +333,8 @@
                     </div>
 
                     <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="p-2 bg-red-100 rounded-lg flex-shrink-0">
-                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="p-2 bg-orange-100 rounded-lg flex-shrink-0">
+                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
@@ -340,7 +350,7 @@
                         </svg>
                         Whatsapp
                     </button>
-                    <button class="flex-1 bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition">
+                    <button class="flex-1 bg-primary text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                         </svg>
@@ -352,6 +362,157 @@
         </div>
     </div>
 </div>
+
+<!-- Quote Modal -->
+<div id="quote-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col animate-fadeIn">
+            <!-- Header -->
+            <div class="border px-8 py-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Request a Quote</h3>
+                        <p class="text-xs">Fill out the form below and we'll get back to you shortly</p>
+                    </div>
+                    <button id="close-modal" class="hover:bg-white/10 p-2 rounded-lg transition-all">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Form Content -->
+            <div class="overflow-y-auto flex-1 px-8 py-6">
+                <form id="quote-form" class="space-y-5">
+                    <!-- Selected Vehicle -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg px-4 py-2">
+                        <label class="block text-sm font-semibold text-gray-700">
+                            <i class="fas fa-car text-primary mr-2"></i>Selected Vehicle
+                        </label>
+                        <input type="text" id="selected-car" readonly value="Mercedes S-Class" 
+                            class="w-full border-0 bg-transparent px-0 py-1 text-gray-900 font-semibold focus:outline-none text-lg">
+                    </div>
+                    
+                    <!-- Personal Information -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                Full Name <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" required placeholder="John Doe"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                Phone Number <span class="text-red-500">*</span>
+                            </label>
+                            <input type="tel" required placeholder="+1 (555) 000-0000"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Email Address <span class="text-red-500">*</span>
+                        </label>
+                        <input type="email" required placeholder="john.doe@example.com"
+                            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                    </div>
+                    
+                    <!-- Service Details -->
+                    <div class="pt-2">
+                        <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                            <div class="w-1 h-6 bg-primary rounded mr-3"></div>
+                            Service Details
+                        </h4>
+                        
+                        <div class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Service Type <span class="text-red-500">*</span>
+                                </label>
+                                <select required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white">
+                                    <option value="">Select a service</option>
+                                    <option value="5-hour">5-Hour Service</option>
+                                    <option value="10-hour">10-Hour Service</option>
+                                    <option value="full-day">Full Day Service</option>
+                                    <option value="airport-transfer">Airport Transfer</option>
+                                </select>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        Pickup Date <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="date" required 
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        Pickup Time <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="time" required 
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Pickup Location <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" required placeholder="Enter pickup address" 
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Drop-off Location
+                                </label>
+                                <input type="text" placeholder="Enter drop-off address (optional)" 
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Number of Passengers
+                                </label>
+                                <select class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white">
+                                    <option value="1">1 Passenger</option>
+                                    <option value="2">2 Passengers</option>
+                                    <option value="3">3 Passengers</option>
+                                    <option value="4">4 Passengers</option>
+                                    <option value="5">5+ Passengers</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Special Requirements
+                                </label>
+                                <textarea rows="3" placeholder="Any special requests or requirements..." 
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Footer -->
+            <div class="bg-gray-50 px-8 py-5 border-t border-gray-200">
+                <div class="flex gap-3">
+                    <button type="button" id="cancel-quote" 
+                        class="flex-1 border-2 border-gray-300 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-100 transition-all">
+                        Cancel
+                    </button>
+                    <button type="submit" form="quote-form"
+                        class="flex-1 bg-gradient-to-r from-primary to-primary-dark text-white py-3 px-6 rounded-lg font-semibold">
+                        <i class="fas fa-paper-plane mr-2"></i>Send Quote Request
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <script>
         (function () {
             // Smooth collapse/expand using max-height transitions

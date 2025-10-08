@@ -250,13 +250,13 @@
 <div id="quote-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex hidden items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col animate-fadeIn">
             <!-- Header -->
-            <div class="bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3">
+            <div class="border px-8 py-4">
                 <div class="flex justify-between items-center">
                     <div>
                         <h3 class="text-xl font-bold mb-1">Request a Quote</h3>
-                        <p class="text-white text-xs">Fill out the form below and we'll get back to you shortly</p>
+                        <p class="text-xs">Fill out the form below and we'll get back to you shortly</p>
                     </div>
-                    <button id="close-modal" class="text-white hover:bg-white/10 p-2 rounded-lg transition-all">
+                    <button id="close-modal" class="hover:bg-white/10 p-2 rounded-lg transition-all">
                         <i class="fas fa-times text-xl"></i>
                     </button>
                 </div>
