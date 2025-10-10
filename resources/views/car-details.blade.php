@@ -49,7 +49,72 @@
             </ol>
         </nav>        
     </div> -->
-
+<div class="w-full bg-white">
+    <div class="w-full max-w-6xl mx-auto p-6">
+        <!-- Top Row -->
+        <div class="flex items-start justify-between mb-6">
+            <div class="flex-1">
+                <div class="flex items-center gap-3 mb-4">
+                    <h1 class="text-3xl font-bold">Car With Driver in Dubai For 10 Hours</h1>
+                    <!-- <div class="flex items-center gap-1 bg-yellow-100 px-3 py-1 rounded">
+                        <span class="text-lg font-bold text-yellow-700">4.5</span>
+                        <span class="text-xs text-gray-600">(500 Reviews)</span>
+                    </div> -->
+                </div>
+                
+                <!-- Details Row -->
+                <div class="flex items-center gap-6 text-sm text-gray-700 flex-wrap">
+                    <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
+                        <i class="fas fa-car text-primary text-xs"></i>
+                        <span class="text-xs font-medium text-gray-700">Full-size SUV</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
+                        <i class="fas fa-users text-primary text-xs"></i>
+                        <span class="text-xs font-medium text-gray-700">7 Passengers</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
+                        <i class="fas fa-suitcase text-primary text-xs"></i>
+                        <span class="text-xs font-medium text-gray-700">2 Luggage</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 text-sm text-gray-700 flex-wrap mt-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 feature-icon rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check-circle text-primary text-xs"></i>
+                        </div>
+                        <span class="text-gray-700 text-sm">All Inclusive Pricing</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 feature-icon rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user-tie text-primary text-xs"></i>
+                        </div>
+                        <span class="text-gray-700 text-sm">Professional Chauffeur</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side - Price and Save -->
+            <div class="text-right">
+                <!-- <div class="flex items-center gap-2 justify-end">
+                    <button class="flex items-center py-2 px-4 border hover:bg-red-50 rounded-full transition">
+                        <svg class="w-4 h-4 text-red-500 fill-current" viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        <span class="text-sm text-gray-600 hover:text-red-600 cursor-pointer ml-1">Save</span>
+                    </button>
+                </div> -->
+               <div class="">
+                    <div class="text-xl md:text-2xl font-bold primary_text_color">AED 600</div>
+                    <div class="text-xs text-gray-600 font-medium">10-Hour Service</div>
+                </div>
+                <div class="">
+                    <div class="text-lg font-bold primary_text_color">AED 100</div>
+                    <div class="text-xs text-gray-600 font-medium">Additional Hour</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Main Content -->
 <div class="max-w-6xl container mx-auto px-4 pb-12 mt-10">
