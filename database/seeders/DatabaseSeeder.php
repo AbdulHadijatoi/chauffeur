@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         // Run all seeders in order
         $this->call([
+            AdminUserSeeder::class,
             SettingsSeeder::class,
             GuidelinesSeeder::class,
             FilesSeeder::class,

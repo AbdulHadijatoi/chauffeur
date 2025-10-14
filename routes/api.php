@@ -3,6 +3,23 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Admin\SettingsController;
+use App\Http\Controllers\Api\Admin\GuidelinesController;
+use App\Http\Controllers\Api\Admin\FilesController;
+use App\Http\Controllers\Api\Admin\ServicesCategoriesController;
+use App\Http\Controllers\Api\Admin\CountriesController;
+use App\Http\Controllers\Api\Admin\CitiesController;
+use App\Http\Controllers\Api\Admin\CityRoutesController;
+use App\Http\Controllers\Api\Admin\CountryRoutesController;
+use App\Http\Controllers\Api\Admin\VehicleTypesController;
+use App\Http\Controllers\Api\Admin\LocationsController;
+use App\Http\Controllers\Api\Admin\VehiclesController;
+use App\Http\Controllers\Api\Admin\VehicleImagesController;
+use App\Http\Controllers\Api\Admin\ServicesController;
+use App\Http\Controllers\Api\Admin\ServiceTypesController;
+use App\Http\Controllers\Api\Admin\VehicleSpecsController;
+use App\Http\Controllers\Api\Admin\QuotesController;
+use App\Http\Controllers\Api\Admin\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +46,87 @@ Route::prefix('auth')->group(function () {
         Route::get('me', [AuthController::class, 'me']);
         Route::post('refresh', [AuthController::class, 'refresh']);
     });
+});
+
+// Admin routes - protected by authentication and admin middleware
+Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
+    
+    // Settings management
+    Route::apiResource('settings', SettingsController::class);
+    Route::get('settings/key/{key}', [SettingsController::class, 'getByKey']);
+    Route::post('settings/bulk-update', [SettingsController::class, 'bulkUpdate']);
+    
+    // Guidelines management
+    Route::apiResource('guidelines', GuidelinesController::class);
+    Route::get('guidelines/type/{type}', [GuidelinesController::class, 'getByType']);
+    Route::get('guidelines-types', [GuidelinesController::class, 'getTypes']);
+    
+    // Files management
+    Route::apiResource('files', FilesController::class);
+    Route::post('files/upload-multiple', [FilesController::class, 'uploadMultiple']);
+    Route::get('files/{file}/download', [FilesController::class, 'download']);
+    Route::get('files/{file}/info', [FilesController::class, 'info']);
+    Route::get('files-types', [FilesController::class, 'getTypes']);
+    
+    // Services Categories management
+    Route::apiResource('services-categories', ServicesCategoriesController::class);
+    Route::get('services-categories-all', [ServicesCategoriesController::class, 'getAll']);
+    
+    // Countries management
+    Route::apiResource('countries', CountriesController::class);
+    Route::get('countries/{country}/cities', [CountriesController::class, 'withCities']);
+    
+    // Cities management
+    Route::apiResource('cities', CitiesController::class);
+    Route::get('cities/country/{countryId}', [CitiesController::class, 'getByCountry']);
+    Route::get('cities-all', [CitiesController::class, 'getAll']);
+    
+    // City Routes management
+    Route::apiResource('city-routes', CityRoutesController::class);
+    Route::get('city-routes/between', [CityRoutesController::class, 'getRouteBetween']);
+    
+    // Country Routes management
+    Route::apiResource('country-routes', CountryRoutesController::class);
+    Route::get('country-routes/between', [CountryRoutesController::class, 'getRouteBetween']);
+    
+    // Vehicle Types management
+    Route::apiResource('vehicle-types', VehicleTypesController::class);
+    
+    // Locations management
+    Route::apiResource('locations', LocationsController::class);
+    
+    // Vehicles management
+    Route::apiResource('vehicles', VehiclesController::class);
+    Route::get('vehicles/{vehicle}/with-relations', [VehiclesController::class, 'showWithRelations']);
+    Route::delete('vehicles/bulk-delete', [VehiclesController::class, 'bulkDelete']);
+    
+    // Vehicle Images management
+    Route::apiResource('vehicle-images', VehicleImagesController::class);
+    Route::post('vehicle-images/upload', [VehicleImagesController::class, 'uploadImage']);
+    Route::get('vehicles/{vehicle}/images', [VehicleImagesController::class, 'getVehicleImages']);
+    Route::post('vehicle-images/{vehicleImage}/set-primary', [VehicleImagesController::class, 'setPrimary']);
+    
+    // Services management
+    Route::apiResource('services', ServicesController::class);
+    
+    // Service Types management
+    Route::apiResource('service-types', ServiceTypesController::class);
+    
+    // Vehicle Specs management
+    Route::apiResource('vehicle-specs', VehicleSpecsController::class);
+    Route::get('vehicle-specs/vehicle/{vehicleId}', [VehicleSpecsController::class, 'getSpecsByVehicle']);
+    Route::get('vehicle-specs/fuel-types', [VehicleSpecsController::class, 'getAvailableFuelTypes']);
+    Route::get('vehicle-specs/transmissions', [VehicleSpecsController::class, 'getAvailableTransmissions']);
+    
+    // Quotes management
+    Route::apiResource('quotes', QuotesController::class);
+    Route::get('quotes-statistics', [QuotesController::class, 'statistics']);
+    Route::get('quotes-export', [QuotesController::class, 'export']);
+    
+    // Users management
+    Route::apiResource('users', UsersController::class);
+    Route::post('users/{user}/toggle-admin', [UsersController::class, 'toggleAdminStatus']);
+    Route::post('users/{user}/verify-email', [UsersController::class, 'verifyEmail']);
+    Route::get('users-admins', [UsersController::class, 'getAdmins']);
+    Route::get('users-regular', [UsersController::class, 'getRegularUsers']);
 });
