@@ -19,5 +19,25 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        // Run all seeders in order
+        $this->call([
+            SettingsSeeder::class,
+            GuidelinesSeeder::class,
+            FilesSeeder::class,
+            ServicesCategoriesSeeder::class,
+            CountriesSeeder::class,
+            CitiesSeeder::class,
+            CityRoutesSeeder::class,
+            CountryRoutesSeeder::class,
+            VehicleTypesSeeder::class,
+            LocationsSeeder::class,
+            VehiclesSeeder::class,
+            VehicleImagesSeeder::class,
+            ServicesSeeder::class,
+            ServiceTypesSeeder::class,
+            VehicleSpecsSeeder::class,
+            QuotesSeeder::class,
+        ]);
     }
 }
