@@ -68,7 +68,7 @@
     <!-- Booking & Reservations Section -->
     <div class="mb-12">
         <div class="flex items-center mb-6">
-            <div class="w-1 h-8 primary_color mr-4"></div>
+            <div class="w-1 h-8 bg-primary mr-4"></div>
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Booking & Reservations</h2>
         </div>
         
@@ -115,7 +115,7 @@
     <!-- Fleet & Service Details Section -->
     <div class="mb-12">
         <div class="flex items-center mb-6">
-            <div class="w-1 h-8 primary_color mr-4"></div>
+            <div class="w-1 h-8 bg-primary mr-4"></div>
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Fleet & Service Details</h2>
         </div>
         
@@ -162,7 +162,7 @@
     <!-- Pricing & Policies Section -->
     <div class="mb-12">
         <div class="flex items-center mb-6">
-            <div class="w-1 h-8 primary_color mr-4"></div>
+            <div class="w-1 h-8 bg-primary mr-4"></div>
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Pricing & Policies</h2>
         </div>
         
@@ -209,7 +209,7 @@
     <!-- Special Requirements Section -->
     <div class="mb-12">
         <div class="flex items-center mb-6">
-            <div class="w-1 h-8 primary_color mr-4"></div>
+            <div class="w-1 h-8 bg-primary mr-4"></div>
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Special Requirements</h2>
         </div>
         
@@ -234,7 +234,7 @@
             <h2 class="text-1xl md:text-2xl font-bold text-white mb-2">Still Have Questions?</h2>
             <p class="text-gray-300 mb-4 text-base md:text-sm">Can't find the answer you're looking for? Our dedicated support team is here to help you 24/7.</p>
 
-            <a href="https://wa.me/971523087786" target="_blank" class="inline-flex items-center primary_color text-white font-semibold px-8 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <a href="https://wa.me/971523087786" target="_blank" class="inline-flex items-center bg-primary text-white font-semibold px-8 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                 Contact Us Now
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>

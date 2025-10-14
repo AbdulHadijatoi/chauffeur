@@ -134,7 +134,7 @@
         <!-- Header -->
         <div class="flex items-center mb-6">
             <div class="w-6 h-6 border-2 primary_border_color rounded-sm flex items-center justify-center mr-3">
-                <div class="w-2 h-2 primary_color rounded-sm"></div>
+                <div class="w-2 h-2 bg-primary rounded-sm"></div>
             </div>
             <span class="primary_text_color font-medium">Get to know about Us</span>
         </div>
@@ -465,7 +465,7 @@
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Have a route in mind?</h3>
                     <p class="text-gray-600">Enter your pickup and drop-off locations to see the price.</p>
                 </div>
-                <button class="primary_color text-white px-8 py-3 rounded-lg">
+                <button class="bg-primary text-white px-8 py-3 rounded-lg">
                     Book a City-to-City ride
                 </button>
             </div>

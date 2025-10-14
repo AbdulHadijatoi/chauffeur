@@ -90,7 +90,7 @@
                 </div>
 
                 <!-- Search Button -->
-                <button class="w-full primary_color text-white py-3 rounded-md">
+                <button class="w-full bg-primary text-white py-3 rounded-md">
                     SHOW RESULTS
                 </button>
 

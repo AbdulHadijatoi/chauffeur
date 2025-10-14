@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="primary_color2 text-white py-16 mt-16">
+<footer class="bg-primary text-white py-16 mt-16">
     <div class="max-w-6xl container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Company Info -->
