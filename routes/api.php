@@ -96,18 +96,39 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::apiResource('locations', LocationsController::class);
     
     // Vehicles management
-    Route::apiResource('vehicles', VehiclesController::class);
-    Route::get('vehicles/{vehicle}/with-relations', [VehiclesController::class, 'showWithRelations']);
-    Route::delete('vehicles/bulk-delete', [VehiclesController::class, 'bulkDelete']);
+    Route::prefix('vehicles')->group(function () {
+
+        // List all vehicles
+        Route::get('/', [VehiclesController::class, 'index']);
+
+        // Create new vehicle
+        Route::post('/', [VehiclesController::class, 'store']);
+
+        // Show single vehicle
+        Route::get('/{vehicle}', [VehiclesController::class, 'show']);
+
+        // Update vehicle
+        Route::post('update/{vehicle}', [VehiclesController::class, 'update']);
+
+        // Delete vehicle
+        Route::delete('/{vehicle}', [VehiclesController::class, 'destroy']);
+        Route::get('{vehicle}/with-relations', [VehiclesController::class, 'showWithRelations']);
+        Route::delete('bulk-delete', [VehiclesController::class, 'bulkDelete']);
+    });
     
     // Vehicle Images management
     Route::apiResource('vehicle-images', VehicleImagesController::class);
     Route::post('vehicle-images/upload', [VehicleImagesController::class, 'uploadImage']);
     Route::get('vehicles/{vehicle}/images', [VehicleImagesController::class, 'getVehicleImages']);
-    Route::post('vehicle-images/{vehicleImage}/set-primary', [VehicleImagesController::class, 'setPrimary']);
+    Route::post('vehicle-images/{vehicle_id}/set-primary', [VehicleImagesController::class, 'setPrimary']);
     
-    // Services management
-    Route::apiResource('services', ServicesController::class);
+    Route::prefix('services')->group(function () {
+        Route::get('/', [ServicesController::class, 'index']);
+        Route::post('store', [ServicesController::class, 'store']);
+        Route::get('/{service}', [ServicesController::class, 'show']);
+        Route::post('update/{service}', [ServicesController::class, 'update']);
+        Route::delete('/{service}', [ServicesController::class, 'destroy']);
+    });
     
     // Service Types management
     Route::apiResource('service-types', ServiceTypesController::class);

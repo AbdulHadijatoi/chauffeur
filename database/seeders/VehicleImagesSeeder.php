@@ -16,15 +16,15 @@ class VehicleImagesSeeder extends Seeder
         $images = [
             [
                 'vehicle_id' => 1, // Mercedes-Benz S-Class
-                'file_id' => 'uploads/vehicles/mercedes-s-class.jpg',
+                'file_id' => 1,
             ],
             [
                 'vehicle_id' => 2, // BMW 7 Series
-                'file_id' => 'uploads/vehicles/bmw-7-series.jpg',
+                'file_id' => 2,
             ],
             [
                 'vehicle_id' => 3, // Audi A8
-                'file_id' => 'uploads/vehicles/audi-a8.jpg',
+                'file_id' => 3,
             ],
         ];
 

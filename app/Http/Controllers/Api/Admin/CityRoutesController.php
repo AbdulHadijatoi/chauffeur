@@ -49,8 +49,8 @@ class CityRoutesController extends Controller
         }
 
         // Pagination
-        $perPage = $request->get('per_page', 15);
-        $routes = $query->orderBy('duration')->paginate($perPage);
+        
+        $routes = $query->orderBy('duration')->get();
 
         return response()->json([
             'success' => true,

@@ -31,8 +31,8 @@ class ServiceTypesController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
-        $perPage = $request->get('per_page', 15);
-        $serviceTypes = $query->orderBy('hour_duration')->paginate($perPage);
+        
+        $serviceTypes = $query->orderBy('hour_duration')->get();
 
         return response()->json(['success' => true, 'data' => $serviceTypes]);
     }

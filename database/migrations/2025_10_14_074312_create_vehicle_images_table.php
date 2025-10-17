@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('vehicle_images', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('vehicle_id')->constrained();
+            $table->unsignedBigInteger('file_id');
+            $table->boolean('is_primary')->default(false);
             $table->timestamps();
+            
+            $table->foreign('file_id')->references('id')->on('files');
         });
     }
 
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('vehicle_images');
     }
 };

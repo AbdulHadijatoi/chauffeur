@@ -33,8 +33,8 @@ class VehicleSpecsController extends Controller
             $query->where('transmission', $request->transmission);
         }
 
-        $perPage = $request->get('per_page', 15);
-        $specs = $query->orderBy('created_at', 'desc')->paginate($perPage);
+        
+        $specs = $query->orderBy('created_at', 'desc')->get();
 
         return response()->json(['success' => true, 'data' => $specs]);
     }

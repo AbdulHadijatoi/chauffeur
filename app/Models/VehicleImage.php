@@ -9,6 +9,7 @@ class VehicleImage extends Model
     protected $fillable = [
         'vehicle_id',
         'file_id',
+        'is_primary',
     ];
 
     protected $appends = [
@@ -22,7 +23,7 @@ class VehicleImage extends Model
 
     public function file()
     {
-        return $this->belongsTo(File::class, 'file_id', 'path');
+        return $this->belongsTo(File::class, 'file_id', 'id');
     }
 
     public function getImageUrlAttribute()

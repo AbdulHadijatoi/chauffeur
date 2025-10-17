@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vehicle_images', function (Blueprint $table) {
+        Schema::create('service_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vehicle_id')->constrained();
-            $table->string('file_id');
-            $table->timestamps();
-            
-            $table->foreign('file_id')->references('path')->on('files');
+            $table->foreignId('service_id')->constrained();
+            $table->integer('hour_duration');
+            $table->decimal('price', 10, 2);
+            $table->decimal('additional_price', 10, 2)->nullable();
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vehicle_images');
+        Schema::dropIfExists('service_types');
     }
 };

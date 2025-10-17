@@ -12,6 +12,7 @@ class ServiceType extends Model
         'service_id',
         'hour_duration',
         'price',
+        'additional_price'
     ];
 
     protected $casts = [

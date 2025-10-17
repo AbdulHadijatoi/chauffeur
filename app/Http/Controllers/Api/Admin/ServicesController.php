@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\ServiceType;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -11,7 +12,7 @@ class ServicesController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Service::with(['vehicle', 'serviceTypes']);
+        $query = Service::with(['vehicle','serviceTypes']);
 
         if ($request->has('search') && $request->search) {
             $search = $request->search;
@@ -28,8 +29,8 @@ class ServicesController extends Controller
             $query->where('vehicle_id', $request->vehicle_id);
         }
 
-        $perPage = $request->get('per_page', 15);
-        $services = $query->orderBy('name')->paginate($perPage);
+        
+        $services = $query->orderBy('name')->get();
 
         return response()->json(['success' => true, 'data' => $services]);
     }
@@ -40,9 +41,24 @@ class ServicesController extends Controller
             'name' => 'required|string|max:255',
             'vehicle_id' => 'required|exists:vehicles,id',
             'description' => 'nullable|string',
+            'hour_duration' => 'nullable|string',
+            'price' => 'nullable',
+            'additional_price' => 'nullable',
         ]);
 
-        $service = Service::create($request->validated());
+        $service = Service::create([
+            'name' => $request->name,
+            'vehicle_id' => $request->vehicle_id,
+            'description' => $request->description,
+        ]);
+
+        $serviceType = ServiceType::create([
+            'service_id' => $service->id,
+            'hour_duration' => $request->hour_duration,
+            'price' => $request->price,
+            'additional_price' => $request->additional_price,
+        ]);
+        
         return response()->json(['success' => true, 'data' => $service->load(['vehicle', 'serviceTypes'])]);
     }
 
@@ -57,9 +73,35 @@ class ServicesController extends Controller
             'name' => 'sometimes|required|string|max:255',
             'vehicle_id' => 'sometimes|required|exists:vehicles,id',
             'description' => 'nullable|string',
+            'hour_duration' => 'nullable|string',
+            'price' => 'nullable',
+            'additional_price' => 'nullable',
         ]);
 
-        $service->update($request->validated());
+        $service->update([
+            'name' => $request->name ?? $service->name,
+            'vehicle_id' => $request->vehicle_id ?? $service->vehicle_id,
+            'description' => $request->description ?? $service->description,
+        ]);
+
+        if ($request->has('hour_duration') || $request->has('price') || $request->has('additional_price')) {
+            $serviceType = $service->serviceTypes()->first();
+            if ($serviceType) {
+                $serviceType->update([
+                    'hour_duration' => $request->hour_duration ?? $serviceType->hour_duration,
+                    'price' => $request->price ?? $serviceType->price,
+                    'additional_price' => $request->additional_price ?? $serviceType->additional_price,
+                ]);
+            } else {
+                ServiceType::create([
+                    'service_id' => $service->id,
+                    'hour_duration' => $request->hour_duration,
+                    'price' => $request->price,
+                    'additional_price' => $request->additional_price,
+                ]);
+            }
+        }
+        
         return response()->json(['success' => true, 'data' => $service->load(['vehicle', 'serviceTypes'])]);
     }
 

@@ -12,7 +12,22 @@ class Setting extends Model
         'is_file',
     ];
 
+    protected $appends = [
+        'image_url',
+    ];
+    
     protected $casts = [
         'is_file' => 'boolean',
     ];
+
+    public function file()
+    {
+        return $this->belongsTo(File::class, 'file_id', 'id');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->file ? $this->file->full_path : null;
+    }
+
 }

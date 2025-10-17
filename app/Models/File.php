@@ -9,32 +9,28 @@ use Illuminate\Support\Str;
 
 class File extends Model
 {
-    protected $primaryKey = 'path';
-    public $incrementing = false;
     public $timestamps = false;
 
-    protected $fillable = [
-        'path',
-        'type',
+    protected $guarded = [
+        // 'path', 'type'
     ];
-
-    protected $appends = [
-        'full_path',
-    ];
-
+    
+    // append full path to the model
+    protected $appends = ['full_path'];
+    
     public function getFullPathAttribute()
     {
-        return Storage::url($this->path);
+        return url(Storage::url($this->path));
     }
 
-    public static function saveFile(UploadedFile $file, string $directory = 'uploads'): self
+    public function saveFile($file, $directory = 'files')
     {
-        $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
-        $path = $file->storeAs($directory, $filename, 'public');
-        
-        return self::create([
-            'path' => $path,
-            'type' => $file->getMimeType(),
-        ]);
+        $path = $file->store($directory,'public');
+        $this->path = $path;
+        $this->type = $file->getClientMimeType();
+        $this->save();
+
+        // return the file path
+        return $this->path;
     }
 }

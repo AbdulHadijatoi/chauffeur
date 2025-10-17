@@ -25,8 +25,8 @@ class ServicesCategoriesController extends Controller
         }
 
         // Pagination
-        $perPage = $request->get('per_page', 15);
-        $categories = $query->orderBy('name')->paginate($perPage);
+        
+        $categories = $query->orderBy('name')->get();
 
         return ServicesCategoryResource::collection($categories);
     }

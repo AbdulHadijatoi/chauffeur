@@ -31,8 +31,8 @@ class VehicleImagesController extends Controller
             });
         }
 
-        $perPage = $request->get('per_page', 15);
-        $images = $query->orderBy('created_at', 'desc')->paginate($perPage);
+        
+        $images = $query->orderBy('created_at', 'desc')->get();
 
         return response()->json([
             'success' => true,
@@ -144,15 +144,25 @@ class VehicleImagesController extends Controller
     /**
      * Set primary image for vehicle
      */
-    public function setPrimary(VehicleImage $vehicleImage)
+    public function setPrimary(Request $request, $vehicle_id)
     {
-        // Remove primary flag from other images of the same vehicle
-        VehicleImage::where('vehicle_id', $vehicleImage->vehicle_id)
-            ->where('id', '!=', $vehicleImage->id)
-            ->update(['is_primary' => false]);
+        $request->validate([
+            'vehicle_image_id' => 'required|exists:vehicle_images,id',
+        ]);
+
+        $vehicleImage = VehicleImage::where('vehicle_id', $vehicle_id)
+            ->where('id', $request->vehicle_image_id)
+            ->firstOrFail();
+
+        if ($vehicleImage->is_primary) {
+            return response()->json([
+                'success' => true,
+                'message' => 'This image is already the primary image'
+            ]);
+        }
 
         // Set this image as primary
-        $vehicleImage->update(['is_primary' => true]);
+        $vehicleImage->update(['is_primary' => 1]);
 
         return response()->json([
             'success' => true,

@@ -32,9 +32,7 @@ class GuidelinesController extends Controller
             $query->where('type', $request->type);
         }
 
-        // Pagination
-        $perPage = $request->get('per_page', 15);
-        $guidelines = $query->orderBy('type')->orderBy('title')->paginate($perPage);
+        $guidelines = $query->orderBy('id','DESC')->get();
 
         return GuidelineResource::collection($guidelines);
     }
@@ -50,7 +48,11 @@ class GuidelinesController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $guideline = Guideline::create($request->validated());
+        $guideline = Guideline::create([
+            'type' => $request->type,
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
 
         return new GuidelineResource($guideline);
     }

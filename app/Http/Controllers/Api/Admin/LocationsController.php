@@ -17,8 +17,8 @@ class LocationsController extends Controller
             $query->where('name', 'like', "%{$request->search}%");
         }
 
-        $perPage = $request->get('per_page', 15);
-        $locations = $query->orderBy('name')->paginate($perPage);
+        
+        $locations = $query->orderBy('name')->get();
 
         return response()->json(['success' => true, 'data' => $locations]);
     }

@@ -48,8 +48,8 @@ class QuotesController extends Controller
         }
 
         // Pagination
-        $perPage = $request->get('per_page', 15);
-        $quotes = $query->orderBy('created_at', 'desc')->paginate($perPage);
+        
+        $quotes = $query->orderBy('created_at', 'desc')->get();
 
         return QuoteResource::collection($quotes);
     }

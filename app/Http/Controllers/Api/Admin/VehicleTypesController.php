@@ -17,8 +17,8 @@ class VehicleTypesController extends Controller
             $query->where('name', 'like', "%{$request->search}%");
         }
 
-        $perPage = $request->get('per_page', 15);
-        $types = $query->orderBy('name')->paginate($perPage);
+        
+        $types = $query->orderBy('name')->get();
 
         return response()->json(['success' => true, 'data' => $types]);
     }

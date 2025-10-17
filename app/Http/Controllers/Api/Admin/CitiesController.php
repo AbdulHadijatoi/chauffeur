@@ -35,8 +35,8 @@ class CitiesController extends Controller
         }
 
         // Pagination
-        $perPage = $request->get('per_page', 15);
-        $cities = $query->orderBy('name')->paginate($perPage);
+        
+        $cities = $query->orderBy('name')->get();
 
         return CityResource::collection($cities);
     }

@@ -40,8 +40,8 @@ class FilesController extends Controller
         }
 
         // Pagination
-        $perPage = $request->get('per_page', 15);
-        $files = $query->orderBy('path')->paginate($perPage);
+        
+        $files = $query->orderBy('path')->get();
 
         return FileResource::collection($files);
     }

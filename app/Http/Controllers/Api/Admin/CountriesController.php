@@ -25,8 +25,8 @@ class CountriesController extends Controller
         }
 
         // Pagination
-        $perPage = $request->get('per_page', 15);
-        $countries = $query->orderBy('name')->paginate($perPage);
+        
+        $countries = $query->orderBy('name')->get();
 
         return CountryResource::collection($countries);
     }

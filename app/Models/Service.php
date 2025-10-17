@@ -17,13 +17,13 @@ class Service extends Model
         return $this->belongsTo(Vehicle::class);
     }
 
-    public function serviceTypes()
-    {
-        return $this->hasMany(ServiceType::class);
-    }
-
     public function quotes()
     {
         return $this->hasMany(Quote::class);
+    }
+
+    public function serviceTypes()
+    {
+        return $this->hasMany(ServiceType::class, 'service_id');
     }
 }

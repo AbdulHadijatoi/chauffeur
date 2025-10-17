@@ -34,8 +34,8 @@ class SettingsController extends Controller
         }
 
         // Pagination
-        $perPage = $request->get('per_page', 15);
-        $settings = $query->orderBy('key')->paginate($perPage);
+        
+        $settings = $query->orderBy('key')->get();
 
         return SettingResource::collection($settings);
     }

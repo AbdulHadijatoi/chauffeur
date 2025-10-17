@@ -16,16 +16,19 @@ class VehiclesSeeder extends Seeder
         $vehicles = [
             [
                 'name' => 'Mercedes-Benz S-Class',
+                'description' => 'Luxury sedan with advanced features.',
                 'passengers' => 4,
                 'luggage' => 3,
             ],
             [
                 'name' => 'BMW 7 Series',
+                'description' => 'Premium sedan with cutting-edge technology.',
                 'passengers' => 4,
                 'luggage' => 3,
             ],
             [
                 'name' => 'Audi A8',
+                'description' => 'Luxury sedan with a spacious interior.',
                 'passengers' => 4,
                 'luggage' => 3,
             ],

@@ -1,0 +1,225 @@
+{
+  "info": {
+    "name": "Chauffeur API",
+    "_postman_id": "a1b2c3d4-e5f6-4789-abcd-1234567890ab",
+    "description": "Postman collection for Chauffeur API (auto-generated). Variables: {{base_url}}, {{token}}.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"secret123\",\n  \"password_confirmation\": \"secret123\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/auth/register", "host": ["{{base_url}}"], "path": ["api","auth","register"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/auth/login", "host": ["{{base_url}}"], "path": ["api","auth","login"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout (protected)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/api/auth/logout", "host": ["{{base_url}}"], "path": ["api","auth","logout"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Me (protected)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/api/auth/me", "host": ["{{base_url}}"], "path": ["api","auth","me"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token (protected)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/api/auth/refresh", "host": ["{{base_url}}"], "path": ["api","auth","refresh"] }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin - Settings",
+      "item": [
+        {
+          "name": "List Settings",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ],
+            "url": { "raw": "{{base_url}}/api/admin/settings", "host": ["{{base_url}}"], "path": ["api","admin","settings"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Setting",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"key\": \"site_name\",\n  \"value\": \"Chauffeur\"\n}" },
+            "url": { "raw": "{{base_url}}/api/admin/settings", "host": ["{{base_url}}"], "path": ["api","admin","settings"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Setting by Key",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ],
+            "url": { "raw": "{{base_url}}/api/admin/settings/key/{key}", "host": ["{{base_url}}"], "path": ["api","admin","settings","key","{key}"], "variable": [ { "key": "key", "value": "site_name" } ] }
+          },
+          "response": []
+        },
+        {
+          "name": "Bulk Update Settings",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"items\": [ { \"key\": \"site_name\", \"value\": \"ChauffeurPlus\" } ]\n}" },
+            "url": { "raw": "{{base_url}}/api/admin/settings/bulk-update", "host": ["{{base_url}}"], "path": ["api","admin","settings","bulk-update"] }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin - Guidelines",
+      "item": [
+        { "name": "List Guidelines", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/guidelines", "host": ["{{base_url}}"], "path": ["api","admin","guidelines"] } }, "response": [] },
+        { "name": "Create Guideline", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{\n  \"title\": \"How to book\",\n  \"type\": \"booking\",\n  \"content\": \"Step by step...\"\n}" }, "url": { "raw": "{{base_url}}/api/admin/guidelines", "host": ["{{base_url}}"], "path": ["api","admin","guidelines"] } }, "response": [] },
+        { "name": "Get Guidelines by Type", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/guidelines/type/{type}", "host": ["{{base_url}}"], "path": ["api","admin","guidelines","type","{type}"], "variable": [ { "key": "type", "value": "booking" } ] } }, "response": [] },
+        { "name": "List Guideline Types", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/guidelines-types", "host": ["{{base_url}}"], "path": ["api","admin","guidelines-types"] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Files",
+      "item": [
+        { "name": "List Files", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/files", "host": ["{{base_url}}"], "path": ["api","admin","files"] } }, "response": [] },
+        { "name": "Upload Multiple Files", "request": { "method": "POST", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "formdata", "formdata": [ { "key": "files[]", "type": "file", "src": [] } ] }, "url": { "raw": "{{base_url}}/api/admin/files/upload-multiple", "host": ["{{base_url}}"], "path": ["api","admin","files","upload-multiple"] } }, "response": [] },
+        { "name": "Download File", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/files/{file}/download", "host": ["{{base_url}}"], "path": ["api","admin","files","{file}","download"], "variable": [ { "key": "file", "value": "123" } ] } }, "response": [] },
+        { "name": "File Info", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/files/{file}/info", "host": ["{{base_url}}"], "path": ["api","admin","files","{file}","info"], "variable": [ { "key": "file", "value": "123" } ] } }, "response": [] },
+        { "name": "List File Types", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/files-types", "host": ["{{base_url}}"], "path": ["api","admin","files-types"] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Services Categories",
+      "item": [
+        { "name": "List Categories", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/services-categories", "host": ["{{base_url}}"], "path": ["api","admin","services-categories"] } }, "response": [] },
+        { "name": "Get All Categories (no pagination)", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/services-categories-all", "host": ["{{base_url}}"], "path": ["api","admin","services-categories-all"] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Countries & Cities",
+      "item": [
+        { "name": "List Countries", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/countries", "host": ["{{base_url}}"], "path": ["api","admin","countries"] } }, "response": [] },
+        { "name": "Get Country Cities", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/countries/{country}/cities", "host": ["{{base_url}}"], "path": ["api","admin","countries","{country}","cities"], "variable": [ { "key": "country", "value": "1" } ] } }, "response": [] },
+        { "name": "List Cities", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/cities", "host": ["{{base_url}}"], "path": ["api","admin","cities"] } }, "response": [] },
+        { "name": "Get Cities by CountryId", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/cities/country/{countryId}", "host": ["{{base_url}}"], "path": ["api","admin","cities","country","{countryId}"], "variable": [ { "key": "countryId", "value": "1" } ] } }, "response": [] },
+        { "name": "List All Cities (no pagination)", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/cities-all", "host": ["{{base_url}}"], "path": ["api","admin","cities-all"] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Routes",
+      "item": [
+        { "name": "List City Routes", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/city-routes", "host": ["{{base_url}}"], "path": ["api","admin","city-routes"] } }, "response": [] },
+        { "name": "Get Route Between Cities (query)", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/city-routes/between?from={from}&to={to}", "host": ["{{base_url}}"], "path": ["api","admin","city-routes","between"], "query": [ { "key": "from", "value": "1" }, { "key": "to", "value": "2" } ] } }, "response": [] },
+        { "name": "List Country Routes", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/country-routes", "host": ["{{base_url}}"], "path": ["api","admin","country-routes"] } }, "response": [] },
+        { "name": "Get Country Route Between (query)", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/country-routes/between?from={from}&to={to}", "host": ["{{base_url}}"], "path": ["api","admin","country-routes","between"], "query": [ { "key": "from", "value": "AE" }, { "key": "to", "value": "BH" } ] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Vehicle Types, Locations, Vehicles",
+      "item": [
+        { "name": "List Vehicle Types", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/vehicle-types", "host": ["{{base_url}}"], "path": ["api","admin","vehicle-types"] } }, "response": [] },
+        { "name": "List Locations", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/locations", "host": ["{{base_url}}"], "path": ["api","admin","locations"] } }, "response": [] },
+        { "name": "List Vehicles", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/vehicles", "host": ["{{base_url}}"], "path": ["api","admin","vehicles"] } }, "response": [] },
+        { "name": "Get Vehicle with Relations", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/vehicles/{vehicle}/with-relations", "host": ["{{base_url}}"], "path": ["api","admin","vehicles","{vehicle}","with-relations"], "variable": [ { "key": "vehicle", "value": "1" } ] } }, "response": [] },
+        { "name": "Bulk Delete Vehicles", "request": { "method": "DELETE", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{\n  \"ids\": [1,2,3]\n}" }, "url": { "raw": "{{base_url}}/api/admin/vehicles/bulk-delete", "host": ["{{base_url}}"], "path": ["api","admin","vehicles","bulk-delete"] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Vehicle Images",
+      "item": [
+        { "name": "List Vehicle Images (by vehicle)", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/vehicles/{vehicle}/images", "host": ["{{base_url}}"], "path": ["api","admin","vehicles","{vehicle}","images"], "variable": [ { "key": "vehicle", "value": "1" } ] } }, "response": [] },
+        { "name": "Upload Vehicle Image", "request": { "method": "POST", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "formdata", "formdata": [ { "key": "image", "type": "file", "src": [] }, { "key": "vehicle_id", "type": "text", "value": "1" } ] }, "url": { "raw": "{{base_url}}/api/admin/vehicle-images/upload", "host": ["{{base_url}}"], "path": ["api","admin","vehicle-images","upload"] } }, "response": [] },
+        { "name": "Set Primary Image", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{\n  \"vehicle_image_id\": 123\n}" }, "url": { "raw": "{{base_url}}/api/admin/vehicle-images/{vehicleImage}/set-primary", "host": ["{{base_url}}"], "path": ["api","admin","vehicle-images","{vehicleImage}","set-primary"], "variable": [ { "key": "vehicleImage", "value": "123" } ] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Services & Service Types",
+      "item": [
+        { "name": "List Services", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/services", "host": ["{{base_url}}"], "path": ["api","admin","services"] } }, "response": [] },
+        { "name": "List Service Types", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/service-types", "host": ["{{base_url}}"], "path": ["api","admin","service-types"] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Vehicle Specs",
+      "item": [
+        { "name": "List Vehicle Specs", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/vehicle-specs", "host": ["{{base_url}}"], "path": ["api","admin","vehicle-specs"] } }, "response": [] },
+        { "name": "Get Specs by Vehicle", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/vehicle-specs/vehicle/{vehicleId}", "host": ["{{base_url}}"], "path": ["api","admin","vehicle-specs","vehicle","{vehicleId}"], "variable": [ { "key": "vehicleId", "value": "1" } ] } }, "response": [] },
+        { "name": "List Fuel Types", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/vehicle-specs/fuel-types", "host": ["{{base_url}}"], "path": ["api","admin","vehicle-specs","fuel-types"] } }, "response": [] },
+        { "name": "List Transmissions", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/vehicle-specs/transmissions", "host": ["{{base_url}}"], "path": ["api","admin","vehicle-specs","transmissions"] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Quotes",
+      "item": [
+        { "name": "List Quotes", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/quotes", "host": ["{{base_url}}"], "path": ["api","admin","quotes"] } }, "response": [] },
+        { "name": "Quotes Statistics", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/quotes-statistics", "host": ["{{base_url}}"], "path": ["api","admin","quotes-statistics"] } }, "response": [] },
+        { "name": "Export Quotes", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/quotes-export", "host": ["{{base_url}}"], "path": ["api","admin","quotes-export"] } }, "response": [] }
+      ]
+    },
+    {
+      "name": "Admin - Users",
+      "item": [
+        { "name": "List Users", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/users", "host": ["{{base_url}}"], "path": ["api","admin","users"] } }, "response": [] },
+        { "name": "Toggle Admin Status", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{base_url}}/api/admin/users/{user}/toggle-admin", "host": ["{{base_url}}"], "path": ["api","admin","users","{user}","toggle-admin"], "variable": [ { "key": "user", "value": "1" } ] } }, "response": [] },
+        { "name": "Verify Email", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{base_url}}/api/admin/users/{user}/verify-email", "host": ["{{base_url}}"], "path": ["api","admin","users","{user}","verify-email"], "variable": [ { "key": "user", "value": "1" } ] } }, "response": [] },
+        { "name": "List Admins", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/users-admins", "host": ["{{base_url}}"], "path": ["api","admin","users-admins"] } }, "response": [] },
+        { "name": "List Regular Users", "request": { "method": "GET", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{base_url}}/api/admin/users-regular", "host": ["{{base_url}}"], "path": ["api","admin","users-regular"] } }, "response": [] }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000" },
+    { "key": "token", "value": "" }
+  ]
+}
