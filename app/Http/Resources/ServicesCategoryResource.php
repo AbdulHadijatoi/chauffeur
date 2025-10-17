@@ -17,6 +17,8 @@ class ServicesCategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'description' => $this->description,
+            'image_url' => $this->image_url,
         ];
     }
 }

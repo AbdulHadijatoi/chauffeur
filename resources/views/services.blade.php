@@ -1,33 +1,29 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', $services_category->name)
 
 @section('content')
 
 <!-- Hero Section -->
 <section class="relative bg-black via-gray-800 text-white px-4 mb-12">
     <div class="absolute inset-0 bg-black/60 z-10"></div>
-    <div class="absolute inset-0" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
+    <div class="absolute inset-0" style="background-image: url('{{$services_category->image_url}}'); background-size: cover; background-position: center;"></div>
     <div class="max-w-6xl container mx-auto relative z-10 h-100 py-6 md:h-[450px] align-start flex flex-col justify-center">
         <div class="w-100 items-center font-light">
             <h2 class="text-3xl md:text-4xl font-semibold mb-2">
-                Chauffeur Service Dubai
+                {{ $services_category->name }}
             </h2>
-            
-            <p>From airport transfers to hourly bookings, we ensure a seamless ride every time.</p>
+
+            <p>{{ $services_category->description }}</p>
         </div>
         
         <!-- Tab Navigation -->
         <div class="flex w-fit md:w-fit text-black text-xs md:text-md rounded-full bg-white p-1 gap-1 mt-4">
-            <button class="h-full px-4 md:px-8 py-2 whitespace-nowrap active-tab">
-                Chauffeur Service
-            </button>
-            <button class="h-full px-4 md:px-8 py-2 whitespace-nowrap">
-                Airport Transfer
-            </button>
-            <button class="h-full px-4 md:px-8 py-2 whitespace-nowrap">
-                City-to-City Ride
-            </button>
+            @foreach(get_services_categories() as $category)
+                <a href="{{ route('listing', $category['id']) }}" class="h-full px-4 md:px-8 py-2 whitespace-nowrap @if($services_category->id === $category['id']) active-tab @endif">
+                    {{ $category['name'] }}
+                </a>
+            @endforeach
         </div>
         
         <div class="mt-6">
@@ -134,112 +130,114 @@
             <div class="space-y-6">
 
                 <!-- List Item -->
-                <div class="bg-white rounded-lg overflow-hidden transition-all duration-300 border">
-                    <div class="flex flex-col md:flex-row h-full image-slider">
-                        <!-- Image Slider -->
-                        <div class="w-100 md:w-60 flex-shrink-0 image-slider max-h-[288px]">
-                            <div class="slider-container h-full">
-                                <div class="slider-wrapper">
-                                    <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol" class="w-full h-full object-cover">
-                                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol Interior" class="w-full h-full object-cover">
-                                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol Side" class="w-full h-full object-cover">
-                                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nissan Patrol Back" class="w-full h-full object-cover">
+                @foreach($services_category->services as $service)
+                    <div class="bg-white rounded-lg overflow-hidden transition-all duration-300 border">
+                        <div class="flex flex-col md:flex-row h-full image-slider">
+                            <!-- Image Slider -->
+                            <div class="w-100 md:w-60 flex-shrink-0 image-slider max-h-[288px]">
+                                <div class="slider-container h-full">
+                                    <div class="slider-wrapper">
+                                        @foreach($service->vehicle->images as $image)
+                                            <img src="{{ $image->image_url }}" alt="{{ $service->vehicle->name }}" class="w-full h-full object-cover">
+                                        @endforeach
+                                    </div>
+                                    <div class="slider-dots">
+                                        @foreach($service->vehicle->images as $index => $image)
+                                            <div class="slider-dot @if($index === 0) active @endif"></div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <div class="slider-dots">
-                                    <div class="slider-dot active"></div>
-                                    <div class="slider-dot"></div>
-                                    <div class="slider-dot"></div>
-                                    <div class="slider-dot"></div>
-                                </div>
+
+                                
                             </div>
-                        </div>
-                        
-                        <!-- Content -->
-                        <div class="flex-1 flex flex-col min-h-0">
-                            <!-- Main Content Area -->
-                            <div class="p-4 md:p-6">
-                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 h-full">
+                            
+                            <!-- Content -->
+                            <div class="flex-1 flex flex-col min-h-0">
+                                <!-- Main Content Area -->
+                                <div class="p-4 md:p-6">
+                                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 h-full">
 
-                                    <div class="lg:col-span-2 flex flex-col text-gray-800">
-                                        <div class="mb-4">
-                                            <a href="{{route('car_details')}}" class="text-xl font-medium text-gray-900 mb-1">
-                                                Car With Driver in Dubai For 10 Hours
-                                            </a>
-                                        </div>    
+                                        <div class="lg:col-span-2 flex flex-col text-gray-800">
+                                            <div class="mb-4">
+                                                <a href="{{route('service_details',[$service->id, slugify($service->name)])}}" class="text-xl font-medium text-gray-900 mb-1">
+                                                    {{ $service->name}}
+                                                </a>
+                                            </div>    
 
-                                        <div class="flex flex-wrap gap-2 mb-4">
-                                            <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
-                                                <i class="fas fa-car text-primary text-xs"></i>
-                                                <span class="text-xs font-medium text-gray-700">Full-size SUV</span>
+                                            <div class="flex flex-wrap gap-2 mb-4">
+                                                <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
+                                                    <i class="fas fa-car text-primary text-xs"></i>
+                                                    <span class="text-xs font-medium text-gray-700">{{ $service->vehicle->name }}</span>
+                                                </div>
+                                                <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
+                                                    <i class="fas fa-users text-primary text-xs"></i>
+                                                    <span class="text-xs font-medium text-gray-700">{{ $service->vehicle->passengers }} Passengers</span>
+                                                </div>
+                                                <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
+                                                    <i class="fas fa-suitcase text-primary text-xs"></i>
+                                                    <span class="text-xs font-medium text-gray-700">{{ $service->vehicle->luggage }} Luggage</span>
+                                                </div>
                                             </div>
-                                            <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
-                                                <i class="fas fa-users text-primary text-xs"></i>
-                                                <span class="text-xs font-medium text-gray-700">7 Passengers</span>
-                                            </div>
-                                            <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
-                                                <i class="fas fa-suitcase text-primary text-xs"></i>
-                                                <span class="text-xs font-medium text-gray-700">2 Luggage</span>
+                                            <div class="text-sm text-gray-700 flex flex-row md:flex-col flex-1 mb-4 lg:mb-0">
+                                                <div class="flex items-center gap-2">
+                                                    <div class="w-7 h-7 feature-icon rounded-lg flex items-center justify-center flex-shrink-0">
+                                                        <i class="fas fa-check-circle text-primary text-xs"></i>
+                                                    </div>
+                                                    <span class="text-gray-700 text-sm">All Inclusive Pricing</span>
+                                                </div>
+                                                <div class="flex items-center gap-2">
+                                                    <div class="w-7 h-7 feature-icon rounded-lg flex items-center justify-center flex-shrink-0">
+                                                        <i class="fas fa-user-tie text-primary text-xs"></i>
+                                                    </div>
+                                                    <span class="text-gray-700 text-sm">Professional Chauffeur</span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="text-sm text-gray-700 flex flex-row md:flex-col flex-1 mb-4 lg:mb-0">
-                                            <div class="flex items-center gap-2">
-                                                <div class="w-7 h-7 feature-icon rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <i class="fas fa-check-circle text-primary text-xs"></i>
+                                        
+                                        <!-- Right Column: Pricing -->
+                                        <div class="lg:col-span-1">
+                                            <div class="space-y-1">
+                                                <div class="rounded-sm">
+                                                    <div class="text-xl md:text-2xl font-bold primary_text_color">AED {{$service->serviceType?$service->serviceType->price:''}}</div>
+                                                    <div class="text-xs text-gray-600 font-medium">{{$service->serviceType?$service->serviceType->hour_duration:''}}-Hour Service</div>
                                                 </div>
-                                                <span class="text-gray-700 text-sm">All Inclusive Pricing</span>
-                                            </div>
-                                            <div class="flex items-center gap-2">
-                                                <div class="w-7 h-7 feature-icon rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <i class="fas fa-user-tie text-primary text-xs"></i>
+                                                <div class="rounded-sm">
+                                                    <div class="text-lg font-bold primary_text_color">AED {{$service->serviceType?$service->serviceType->additional_price:''}}</div>
+                                                    <div class="text-xs text-gray-600 font-medium">Additional Hour</div>
                                                 </div>
-                                                <span class="text-gray-700 text-sm">Professional Chauffeur</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!-- Right Column: Pricing -->
-                                    <div class="lg:col-span-1">
-                                        <div class="space-y-1">
-                                            <div class="rounded-sm">
-                                                <div class="text-xl md:text-2xl font-bold primary_text_color">AED 600</div>
-                                                <div class="text-xs text-gray-600 font-medium">10-Hour Service</div>
-                                            </div>
-                                            <div class="rounded-sm">
-                                                <div class="text-lg font-bold primary_text_color">AED 100</div>
-                                                <div class="text-xs text-gray-600 font-medium">Additional Hour</div>
-                                            </div>
-                                        </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="action-buttons px-4 md:px-6 pb-4">
+                                    <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
+                                        <!-- primary Action Buttons -->
+                                    <div class="flex justify-center gap-2 mt-3 md:mt-0">
+                                        <button onclick="showLocation()" class="w-10 h-10 border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-600 hover:border-amber-500 hover:text-amber-500 hover:bg-amber-50 transition-all duration-300" title="Show Location">
+                                            <i class="fas fa-map-marker-alt text-sm"></i>
+                                        </button>
+                                        <button onclick="makeCall()" class="w-10 h-10 border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-600 hover:border-amber-500 hover:text-amber-500 hover:bg-amber-50 transition-all duration-300" title="Call Now">
+                                            <i class="fas fa-phone text-sm"></i>
+                                        </button>
+                                        <a href="https://wa.me/{{ preg_replace('/\D/', '',trim(get_setting('contact_phone'))) }}" target="_blank" class="w-10 h-10 border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-600 hover:border-green-500 hover:text-green-500 hover:bg-green-50 transition-all duration-300" title="WhatsApp">
+                                            <i class="fab fa-whatsapp text-sm"></i>
+                                        </a>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Action Buttons -->
-                            <div class="action-buttons px-4 md:px-6 pb-4">
-                                <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
-                                    <!-- primary Action Buttons -->
-                                <div class="flex justify-center gap-2 mt-3 md:mt-0">
-                                    <button onclick="showLocation()" class="w-10 h-10 border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-600 hover:border-amber-500 hover:text-amber-500 hover:bg-amber-50 transition-all duration-300" title="Show Location">
-                                        <i class="fas fa-map-marker-alt text-sm"></i>
+                                    <!-- Primary CTA -->
+                                    <button data-car="{{$service->name}}" class="quote-btn quote-btn-mobile flex-1 sm:flex-none sm:min-w-[160px] bg-primary text-white font-bold py-2.5 px-6 rounded-full text-sm">
+                                        Get Quote Now
+                                        <i class="fas fa-arrow-right ml-2"></i>
                                     </button>
-                                    <button onclick="makeCall()" class="w-10 h-10 border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-600 hover:border-amber-500 hover:text-amber-500 hover:bg-amber-50 transition-all duration-300" title="Call Now">
-                                        <i class="fas fa-phone text-sm"></i>
-                                    </button>
-                                    <a href="https://wa.me/971523087786" target="_blank" class="w-10 h-10 border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-600 hover:border-green-500 hover:text-green-500 hover:bg-green-50 transition-all duration-300" title="WhatsApp">
-                                        <i class="fab fa-whatsapp text-sm"></i>
-                                    </a>
-                                </div>
-
-                                <!-- Primary CTA -->
-                                <button data-car="Nissan Patrol Titanium 2023" class="quote-btn quote-btn-mobile flex-1 sm:flex-none sm:min-w-[160px] bg-primary text-white font-bold py-2.5 px-6 rounded-full text-sm">
-                                    Get Quote Now
-                                    <i class="fas fa-arrow-right ml-2"></i>
-                                </button>
-                                    
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
             </div>
         </div>

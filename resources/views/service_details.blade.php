@@ -55,7 +55,7 @@
         <div class="flex items-start justify-between mb-6">
             <div class="flex-1">
                 <div class="flex items-center gap-3 mb-4">
-                    <h1 class="text-3xl font-bold">Car With Driver in Dubai For 10 Hours</h1>
+                    <h1 class="text-3xl font-bold">{{$service->name}}</h1>
                     <!-- <div class="flex items-center gap-1 bg-yellow-100 px-3 py-1 rounded">
                         <span class="text-lg font-bold text-yellow-700">4.5</span>
                         <span class="text-xs text-gray-600">(500 Reviews)</span>
@@ -66,15 +66,15 @@
                 <div class="flex items-center gap-6 text-sm text-gray-700 flex-wrap">
                     <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
                         <i class="fas fa-car text-primary text-xs"></i>
-                        <span class="text-xs font-medium text-gray-700">Full-size SUV</span>
+                        <span class="text-xs font-medium text-gray-700">{{ $service->vehicle->name }}</span>
                     </div>
                     <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
                         <i class="fas fa-users text-primary text-xs"></i>
-                        <span class="text-xs font-medium text-gray-700">7 Passengers</span>
+                        <span class="text-xs font-medium text-gray-700">{{ $service->vehicle->passengers }} Passengers</span>
                     </div>
                     <div class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
                         <i class="fas fa-suitcase text-primary text-xs"></i>
-                        <span class="text-xs font-medium text-gray-700">2 Luggage</span>
+                        <span class="text-xs font-medium text-gray-700">{{ $service->vehicle->luggage }} Luggage</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-6 text-sm text-gray-700 flex-wrap mt-4">
@@ -126,7 +126,7 @@
         <div class="bg-white rounded-lg shadow-sm overflow-hidden">
             <!-- Main Image -->
             <div class="relative">
-            <img id="main-image" src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop" alt="Blue Audi" class="w-full h-96 object-cover transition-opacity duration-200">
+            <img id="main-image" src="{{ $service->vehicle->images[0]->image_url }}" alt="Blue Audi" class="w-full h-96 object-cover transition-opacity duration-200">
             <button id="see-all-btn" type="button" class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 hover:bg-gray-50 transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -137,10 +137,9 @@
 
             <!-- Thumbnail Gallery -->
             <div class="p-4 flex gap-3 overflow-x-auto">
-            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-yellow-500">
-            <img src="https://images.unsplash.com/photo-1614162692291-7ac56d7f1ea8?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1614162692292-7ac56d7f1ea8?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-yellow-300">
-            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-yellow-300">
-            <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=150&h=100&fit=crop" data-large="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=500&fit=crop" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-yellow-300">
+                @foreach($service->vehicle->images as $image)
+                    <img src="{{ $image->image_url }}" data-large="{{ $image->image_url }}" class="thumbnail w-24 h-16 rounded-lg object-cover cursor-pointer border-2 border-yellow-500">
+                @endforeach
             </div>
 
             <!-- Image Modal / Lightbox -->
@@ -166,7 +165,7 @@
             </div>
             <div id="description-content" class="collapse-content open" role="region">
                 <div id="description-text" class="text-gray-600 leading-relaxed clamped">
-                    Kicking off on April 1, 2025, the "DreamTour" will take Luna to major cities across North America and Europe, including Los Angeles, New York, Chicago, Toronto, and London. Each concert will showcase her unique blend of pop and ethereal soundscapes, bringing her music to life in a way you've never seen before.
+                    {{$service->vehicle->description}}
                 </div>
                 <button class="show-more-btn text-red-500 font-medium mt-3 hover:text-red-600" data-target="#description-text" aria-expanded="false">Show More</button>
             </div>
@@ -183,38 +182,55 @@
             </button>
             </div>
 
-            <div id="specs-content" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 collapse-content open" role="region">
+            <div id="specs-content" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 collapse-content open" role="region">
             <!-- Specification Items (server-rendered so they appear without Alpine) -->
-            @php
-                $specs = [
-                    ['label' => 'Transmission', 'value' => 'Auto', 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
-                    ['label' => 'Mileage', 'value' => '24 KMS', 'icon' => 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z'],
-                    ['label' => 'Steering', 'value' => 'Auto', 'icon' => 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4'],
-                    ['label' => 'Make', 'value' => 'Audi', 'icon' => 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'],
-                    ['label' => 'Model Year', 'value' => '2019', 'icon' => 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'],
-                    ['label' => 'Brake', 'value' => 'ABS', 'icon' => 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
-                    ['label' => 'Body', 'value' => 'Sedan', 'icon' => 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'],
-                    ['label' => 'AC', 'value' => 'Air Conditioned', 'icon' => 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z'],
-                    ['label' => 'Engine (Hp)', 'value' => '3,000', 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
-                    ['label' => 'Fuel Type', 'value' => 'Diesel', 'icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'],
-                    ['label' => 'Doors', 'value' => '4', 'icon' => 'M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z'],
-                    ['label' => 'Access', 'value' => 'Remote', 'icon' => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z']
-                ];
-            @endphp
+            
 
-            @foreach($specs as $spec)
-                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <div class="p-3 bg-orange-100 rounded-lg flex-shrink-0">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path d="{{ $spec['icon'] }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="text-sm text-gray-600">{{ $spec['label'] }}</div>
-                        <div class="text-sm font-semibold text-gray-900">{{ $spec['value'] }}</div>
-                    </div>
+                 @php
+    $vehicle_specs = $service->vehicle->specs;
+
+    // Define labels and corresponding Font Awesome icons
+    $specs = [
+        'transmission' => ['label' => 'Transmission', 'icon' => 'fa-gear'],
+        'mileage' => ['label' => 'Mileage', 'icon' => 'fa-road'],
+        'steering' => ['label' => 'Steering', 'icon' => 'fa-circle-notch'],
+        'fuel_type' => ['label' => 'Fuel Type', 'icon' => 'fa-gas-pump'],
+        'engine' => ['label' => 'Engine', 'icon' => 'fa-cogs'],
+        'power' => ['label' => 'Power', 'icon' => 'fa-bolt'],
+        'torque' => ['label' => 'Torque', 'icon' => 'fa-rotate-right'],
+        'acceleration' => ['label' => 'Acceleration', 'icon' => 'fa-gauge-high'],
+        'top_speed' => ['label' => 'Top Speed', 'icon' => 'fa-tachometer-alt'],
+        'fuel_capacity' => ['label' => 'Fuel Capacity', 'icon' => 'fa-gas-pump'],
+        'weight' => ['label' => 'Weight', 'icon' => 'fa-weight-hanging'],
+        'length' => ['label' => 'Length', 'icon' => 'fa-ruler-horizontal'],
+        'width' => ['label' => 'Width', 'icon' => 'fa-ruler-combined'],
+        'height' => ['label' => 'Height', 'icon' => 'fa-ruler-vertical'],
+        'wheelbase' => ['label' => 'Wheelbase', 'icon' => 'fa-car-side'],
+        'ground_clearance' => ['label' => 'Ground Clearance', 'icon' => 'fa-arrows-up-down'],
+        'turning_radius' => ['label' => 'Turning Radius', 'icon' => 'fa-circle'],
+        'boot_space' => ['label' => 'Boot Space', 'icon' => 'fa-box-open'],
+        'air_conditioning' => ['label' => 'Air Conditioning', 'icon' => 'fa-snowflake'],
+        'infotainment' => ['label' => 'Infotainment', 'icon' => 'fa-music'],
+        'safety_features' => ['label' => 'Safety Features', 'icon' => 'fa-shield-halved'],
+        'comfort_features' => ['label' => 'Comfort Features', 'icon' => 'fa-couch'],
+    ];
+@endphp
+
+
+    @foreach ($specs as $key => $spec)
+        @php $value = $vehicle_specs->$key ?? null; @endphp
+        @if (!empty($value))
+            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                <div class="p-3 bg-orange-100 rounded-lg flex-shrink-0">
+                    <i class="fa-solid {{ $spec['icon'] }} text-orange-600 text-lg"></i>
                 </div>
-            @endforeach
+                <div>
+                    <div class="text-sm text-gray-600">{{ $spec['label'] }}</div>
+                    <div class="text-sm font-semibold text-gray-900">{{ $value }}</div>
+                </div>
+            </div>
+        @endif
+    @endforeach
             </div>
         </div>
 
@@ -347,13 +363,13 @@
             <div class="bg-white rounded-lg shadow-sm p-6">
                 <h2 class="text-xl font-bold text-gray-900 mb-6">Contact Us for more details</h2>
                 
-                <div class="flex items-start gap-3 mb-6">
+                <!-- <div class="flex items-start gap-3 mb-6">
                     <img src="https://ui-avatars.com/api/?name=Adrian+Henriques&background=C7A240&color=fff" alt="Adrian Henriques" class="w-12 h-12 rounded-full flex-shrink-0">
                     <div>
                         <h3 class="font-semibold text-gray-900">Adrian Henriques</h3>
                         <p class="text-sm text-gray-500">Member Since • 14 May 2024</p>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="space-y-3">
                     <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
@@ -362,7 +378,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                             </svg>
                         </div>
-                        <span class="text-gray-700 text-sm">+1 12345 45548</span>
+                        <span class="text-gray-700 text-sm">{{get_setting('contact_phone')}}</span>
                     </div>
 
                     <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
@@ -371,7 +387,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        <span class="text-gray-700 text-sm">Info@example.com</span>
+                        <span class="text-gray-700 text-sm">{{get_setting('contact_email')}}</span>
                     </div>
 
                     <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
@@ -381,23 +397,23 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                         </div>
-                        <span class="text-gray-700 text-sm">4635 Pheasant Ridge Road, USA</span>
+                        <span class="text-gray-700 text-sm">{{get_setting('address')}}</span>
                     </div>
                 </div>
 
                 <div class="flex gap-3 mt-6">
-                    <button class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition">
+                    <a href="https://wa.me/{{ preg_replace('/\D/', '',trim(get_setting('contact_phone'))) }}" target="_blank" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
                         </svg>
                         Whatsapp
-                    </button>
-                    <button class="flex-1 bg-primary text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition">
+                    </a>
+                    <!-- <button class="flex-1 bg-primary text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                         </svg>
                         Chat Now
-                    </button>
+                    </button> -->
                 </div>
             </div>
 

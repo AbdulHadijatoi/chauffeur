@@ -3,8 +3,8 @@
         <div class="flex items-center space-x-6">
             <span class="flex items-center hidden md:flex"><i class="fas fa-clock mr-1 text-white"></i>24/7 Service</span>
             <span class="items-center"><i class="fas fa-map-marker-alt mr-1 text-white"></i>Dubai, UAE</span>
-            <span class="items-center"><i class="fas fa-phone mr-1 text-white"></i>+971 52 308 7786</span>
-            <span class="flex items-center hidden md:flex"><i class="fas fa-envelope mr-1 text-white"></i>info@chauffeurdubai.com</span>
+            <a href="tel:{{ get_setting('contact_phone') }}" class="items-center"><i class="fas fa-phone mr-1 text-white"></i>{{ get_setting('contact_phone') }}</a>
+            <a href="mailto:{{ get_setting('contact_email') }}" class="flex items-center hidden md:flex"><i class="fas fa-envelope mr-1 text-white"></i>{{ get_setting('contact_email') }}</a>
         </div>
     </div>
 </div>

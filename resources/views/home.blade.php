@@ -18,15 +18,11 @@
         
         <!-- Tab Navigation -->
         <div class="flex w-fit md:w-fit text-black text-xs md:text-md rounded-full bg-white p-1 gap-1 mt-4">
-            <button class="h-full px-4 md:px-8 py-2 whitespace-nowrap active-tab">
-                Chauffeur Service
-            </button>
-            <button class="h-full px-4 md:px-8 py-2 whitespace-nowrap">
-                Airport Transfer
-            </button>
-            <button class="h-full px-4 md:px-8 py-2 whitespace-nowrap">
-                City-to-City Ride
-            </button>
+            @foreach(get_services_categories() as $index => $category)
+            <a href="{{ route('listing', $category['id']) }}" class="h-full px-4 md:px-8 py-2 whitespace-nowrap @if($index === 0) active-tab @endif">
+                {{ $category['name'] }}
+            </a>
+            @endforeach
         </div>
         
         <div class="mt-6">
@@ -357,104 +353,19 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Column 1 -->
-                <div class="space-y-4">
+                @foreach(get_city_routes() as $index => $route)
                     <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                         <div class="flex items-center space-x-2 mb-2">
-                            <span class="font-semibold text-gray-900">New York</span>
+                            <span class="font-semibold text-gray-900">{{ $route['from_city'] }}</span>
                             <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
-                            <span class="font-semibold text-gray-900">Philadelphia</span>
+                            <span class="font-semibold text-gray-900">{{ $route['to_city'] }}</span>
                         </div>
-                        <p class="text-sm text-gray-500">1h 50m • 59 mi</p>
+                        <p class="text-sm text-gray-500">{{ $route['duration'] }} • {{ $route['distance'] }}</p>
                     </div>
+                @endforeach
                     
-                    <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="font-semibold text-gray-900">New York</span>
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                            <span class="font-semibold text-gray-900">East Hampton</span>
-                        </div>
-                        <p class="text-sm text-gray-500">2h 30m • 68 mi</p>
-                    </div>
-                </div>
-                
-                <!-- Column 2 -->
-                <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="font-semibold text-gray-900">London</span>
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                            <span class="font-semibold text-gray-900">Oxford</span>
-                        </div>
-                        <p class="text-sm text-gray-500">1h 45m • 96 km</p>
-                    </div>
-                    
-                    <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="font-semibold text-gray-900">Manchester</span>
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                            <span class="font-semibold text-gray-900">Liverpool</span>
-                        </div>
-                        <p class="text-sm text-gray-500">1h • 57 km</p>
-                    </div>
-                </div>
-                
-                <!-- Column 3 -->
-                <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="font-semibold text-gray-900">Paris</span>
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                            <span class="font-semibold text-gray-900">Reims</span>
-                        </div>
-                        <p class="text-sm text-gray-500">2h 15m • 145 km</p>
-                    </div>
-                    
-                    <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="font-semibold text-gray-900">Nice</span>
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                            <span class="font-semibold text-gray-900">Saint Tropez</span>
-                        </div>
-                        <p class="text-sm text-gray-500">1h 40m • 112 km</p>
-                    </div>
-                </div>
-                
-                <!-- Column 4 -->
-                <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="font-semibold text-gray-900">Dubai</span>
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                            <span class="font-semibold text-gray-900">Abu Dhabi</span>
-                        </div>
-                        <p class="text-sm text-gray-500">1h 15m • 136 km</p>
-                    </div>
-                    
-                    <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="font-semibold text-gray-900">Brisbane</span>
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                            <span class="font-semibold text-gray-900">Gold Coast</span>
-                        </div>
-                        <p class="text-sm text-gray-500">1h • 79 km</p>
-                    </div>
-                </div>
             </div>
         </div>
         
@@ -465,9 +376,9 @@
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Have a route in mind?</h3>
                     <p class="text-gray-600">Enter your pickup and drop-off locations to see the price.</p>
                 </div>
-                <button class="bg-primary text-white px-8 py-3 rounded-lg">
+                <a href="{{route('listing',3)}}" class="bg-primary text-white px-8 py-3 rounded-lg">
                     Book a City-to-City ride
-                </button>
+                </a>
             </div>
         </div>
     </div>

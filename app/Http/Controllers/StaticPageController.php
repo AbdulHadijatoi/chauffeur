@@ -12,4 +12,18 @@ class StaticPageController extends Controller
             'title' => 'Frequently Asked Questions (FAQ)'
         ]);
     }
+    
+    public function help()
+    {
+        return view('help', [
+            'title' => 'Help & Support'
+        ]);
+    }
+
+    public function aboutUs()
+    {
+        return view('about-us', [
+            'title' => 'About Us'
+        ]);
+    }
 }

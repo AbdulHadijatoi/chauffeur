@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('vehicle_id')->constrained();
+            $table->unsignedBigInteger('services_category_id')->nullable();
+
+            $table->foreign('services_category_id')->references('id')->on('services_categories')->onDelete('set null');
             $table->text('description')->nullable();
             $table->timestamps();
         });

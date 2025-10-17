@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('services_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description')->nullable();
+            $table->unsignedBigInteger('file_id')->nullable();
+            $table->foreign('file_id')->references('id')->on('files')->onDelete('set null');
         });
     }
 

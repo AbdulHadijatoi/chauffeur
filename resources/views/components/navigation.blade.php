@@ -3,7 +3,7 @@
         Home
     </a>
 
-    <a href="#" class="flex items-center hover:underline transition-colors py-2">
+    <a href="{{url('about-us')}}" class="flex items-center hover:underline transition-colors py-2">
         About Us
     </a>
 
@@ -14,9 +14,11 @@
         </a>
         <div class="absolute top-full left-0 bg-white shadow-xl rounded-sm w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 z-50 border">
             <div class="py-3">
-                <a href="{{url('listing')}}" class="block px-4 py-3 hover:bg-gray-50 transition-colors">Chauffeur Services</a>
-                <a href="{{url('listing')}}" class="block px-4 py-3 hover:bg-gray-50 transition-colors">Airport Transfer</a>
-                <a href="{{url('listing')}}" class="block px-4 py-3 hover:bg-gray-50 transition-colors">City to City Ride</a>
+                @foreach(get_services_categories() as $category)
+                    <a href="{{ route('listing', $category['id']) }}" class="block px-4 py-3 hover:bg-gray-50 transition-colors">
+                        {{ $category['name'] }}
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>
@@ -25,7 +27,7 @@
         FAQ
     </a>
 
-    <a href="#" class="flex items-center hover:underline transition-colors py-2">
+    <a href="{{url('help')}}" class="flex items-center hover:underline transition-colors py-2">
         Help
     </a>
 </nav>

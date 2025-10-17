@@ -9,6 +9,7 @@ use App\Http\Resources\SettingResource;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 
 class SettingsController extends Controller
 {
@@ -47,6 +48,7 @@ class SettingsController extends Controller
     {
         $setting = Setting::create($request->validated());
 
+        Cache::forget('app_settings');
         return new SettingResource($setting);
     }
 
@@ -65,6 +67,7 @@ class SettingsController extends Controller
     {
         $setting->update($request->validated());
 
+        Cache::forget('app_settings');
         return new SettingResource($setting);
     }
 
@@ -75,6 +78,7 @@ class SettingsController extends Controller
     {
         $setting->delete();
 
+        Cache::forget('app_settings');
         return response()->json([
             'success' => true,
             'message' => 'Setting deleted successfully'
@@ -122,6 +126,8 @@ class SettingsController extends Controller
             );
             $updatedSettings[] = $setting;
         }
+
+        Cache::forget('app_settings');
 
         return SettingResource::collection($updatedSettings);
     }

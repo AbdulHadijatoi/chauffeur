@@ -6,9 +6,11 @@ use App\Http\Controllers\ListingController;
 use App\Http\Controllers\StaticPageController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/listing', [ListingController::class, 'index'])->name('listing');
-Route::get('/listing/car-details', [ListingController::class, 'car_details'])->name('car_details');
+Route::get('/services/{id}', [ListingController::class, 'index'])->name('listing');
+Route::get('/services/{id}/{service_name}', [ListingController::class, 'service_details'])->name('service_details');
 Route::get('/faq', [StaticPageController::class, 'faq']);
+Route::get('/help', [StaticPageController::class, 'help']);
+Route::get('/about-us', [StaticPageController::class, 'aboutUs']);
 
 
 // settings: (key, value, is_file). add index on the key column

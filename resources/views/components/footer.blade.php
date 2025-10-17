@@ -61,15 +61,15 @@
                 <div class="space-y-3 text-sm font-light">
                     <div class="flex items-start">
                         <i class="fas fa-map-marker-alt mr-3 mt-1 text-white"></i>
-                        <span>Business Bay, Dubai<br>United Arab Emirates</span>
+                        <span>{{ get_setting('address') }}</span>
                     </div>
                     <div class="flex items-center">
                         <i class="fas fa-phone mr-3 text-white"></i>
-                        <a href="tel:+971501234567" class="hover:underline transition-colors">+971 52 308 7786</a>
+                        <a href="tel:{{ get_setting('contact_phone') }}" class="hover:underline transition-colors">{{ get_setting('contact_phone') }}</a>
                     </div>
                     <div class="flex items-center">
                         <i class="fas fa-envelope mr-3 text-white"></i>
-                        <a href="mailto:info@chauffeurdubai.com" class="hover:underline transition-colors">info@chauffeurdubai.com</a>
+                        <a href="mailto:{{ get_setting('contact_email') }}" class="hover:underline transition-colors">{{ get_setting('contact_email') }}</a>
                     </div>
                     <div class="flex items-center">
                         <i class="fas fa-clock mr-3 text-white"></i>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="flex items-center">
                         <i class="fab fa-whatsapp mr-3 text-white"></i>
-                        <a href="https://wa.me/971523087786" target="_blank" class="hover:underline transition-colors">WhatsApp Support</a>
+                        <a href="https://wa.me/{{ preg_replace('/\D/', '',trim(get_setting('contact_phone'))) }}" target="_blank" class="hover:underline transition-colors">WhatsApp Support</a>
                     </div>
                 </div>
             </div>

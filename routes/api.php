@@ -69,8 +69,13 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::get('files-types', [FilesController::class, 'getTypes']);
     
     // Services Categories management
-    Route::apiResource('services-categories', ServicesCategoriesController::class);
-    Route::get('services-categories-all', [ServicesCategoriesController::class, 'getAll']);
+    Route::prefix('services-categories')->group(function () {
+        Route::get('/', [ServicesCategoriesController::class, 'index']);
+        Route::post('store', [ServicesCategoriesController::class, 'store']);
+        Route::post('update/{category}', [ServicesCategoriesController::class, 'update']);
+        Route::get('/{category}', [ServicesCategoriesController::class, 'show']);
+        Route::delete('/{category}', [ServicesCategoriesController::class, 'destroy']);
+    });
     
     // Countries management
     Route::apiResource('countries', CountriesController::class);

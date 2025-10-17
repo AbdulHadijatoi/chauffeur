@@ -8,9 +8,15 @@ class Service extends Model
 {
     protected $fillable = [
         'name',
+        'service_category_id',
         'vehicle_id',
         'description',
     ];
+
+    public function serviceCategory()
+    {
+        return $this->belongsTo(ServicesCategory::class);
+    }
 
     public function vehicle()
     {
@@ -22,8 +28,8 @@ class Service extends Model
         return $this->hasMany(Quote::class);
     }
 
-    public function serviceTypes()
+    public function serviceType()
     {
-        return $this->hasMany(ServiceType::class, 'service_id');
+        return $this->hasOne(ServiceType::class, 'service_id');
     }
 }

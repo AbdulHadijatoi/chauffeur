@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ServicesCategoryResource;
+use App\Models\File;
 use App\Models\ServicesCategory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -38,9 +39,24 @@ class ServicesCategoriesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:services_categories,name',
+            'description' => 'nullable',
+            'image' => 'nullable',
         ]);
 
-        $category = ServicesCategory::create($request->validated());
+        $category = ServicesCategory::create([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        // Handle image upload if exists
+        if ($request->hasFile('image')) {
+            $file = new File();
+            $file->saveFile($request->file('image'), 'services_category_images');
+            $category->file_id = $file->id;
+            $category->save();
+        }
+
+        cache()->forget('services_categories');
 
         return new ServicesCategoryResource($category);
     }
@@ -56,19 +72,37 @@ class ServicesCategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ServicesCategory $servicesCategory)
+    public function update(Request $request, $services_category_id)
     {
         $request->validate([
-            'name' => [
-                'sometimes',
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('services_categories', 'name')->ignore($servicesCategory->id)
-            ],
+            'name' => 'nullable',
+            'description' => 'nullable',
+            'image' => 'nullable',
+        ]);
+        
+        $servicesCategory = ServicesCategory::findOrFail($services_category_id);
+
+        $servicesCategory->update([
+            'name' => $request->name ?? $servicesCategory->name,
+            'description' => $request->description ?? $servicesCategory->description,
+            'image' => $request->image ?? $servicesCategory->image,
         ]);
 
-        $servicesCategory->update($request->validated());
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            $oldImage = $servicesCategory->file;
+            if ($oldImage) {
+                $oldImage->delete();
+            }
+
+            // Save new image
+            $file = new File();
+            $file->saveFile($request->file('image'), 'services_category_images');
+            $servicesCategory->file_id = $file->id;
+            $servicesCategory->save();
+        }
+
+        cache()->forget('services_categories');
 
         return new ServicesCategoryResource($servicesCategory);
     }
@@ -79,6 +113,8 @@ class ServicesCategoriesController extends Controller
     public function destroy(ServicesCategory $servicesCategory)
     {
         $servicesCategory->delete();
+
+        cache()->forget('services_categories');
 
         return response()->json([
             'success' => true,

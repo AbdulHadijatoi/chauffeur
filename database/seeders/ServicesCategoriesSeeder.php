@@ -15,13 +15,16 @@ class ServicesCategoriesSeeder extends Seeder
     {
         $categories = [
             [
+                'name' => 'Chauffeur Service',
+                'description' => 'Professional chauffeur services for all occasions.',
+            ],
+            [
                 'name' => 'Airport Transfer',
+                'description' => 'Reliable airport transfer services to and from the airport.',
             ],
             [
-                'name' => 'City Tour',
-            ],
-            [
-                'name' => 'Wedding Service',
+                'name' => 'City-to-City Ride',
+                'description' => 'Convenient city-to-city ride services for long-distance travel.',
             ],
         ];
 
