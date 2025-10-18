@@ -22,7 +22,7 @@ class Setting extends Model
 
     public function file()
     {
-        return $this->belongsTo(File::class, 'file_id', 'id');
+        return $this->belongsTo(File::class, 'value', 'id');
     }
 
     public function getImageUrlAttribute()

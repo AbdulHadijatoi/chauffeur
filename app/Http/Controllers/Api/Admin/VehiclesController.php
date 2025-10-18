@@ -42,9 +42,15 @@ class VehiclesController extends Controller
 
         // Pagination
         
-        $vehicles = $query->orderBy('name')->get();
+        $vehicles = $query->orderBy('name')->paginate($request->perPage);
 
-        return VehicleResource::collection($vehicles);
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'vehicles' => VehicleResource::collection($vehicles),
+                'total' => $vehicles->total()
+            ]
+        ]);
     }
 
     /**
@@ -124,6 +130,11 @@ class VehiclesController extends Controller
                 $vehicle->images()->create(['file_id' => $file->id, 'is_primary' => $index === 0]);
             }
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Vehicle created successfully',
+        ], Response::HTTP_CREATED);
 
         return new VehicleResource($vehicle->load(['images', 'specs']));
     }
@@ -213,7 +224,10 @@ class VehiclesController extends Controller
             }
         }
 
-        return new VehicleResource($vehicle->load(['images', 'specs']));
+        return response()->json([
+            'success' => true,
+            'message' => 'Vehicle updated successfully'
+        ]);
     }
 
     /**

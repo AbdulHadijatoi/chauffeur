@@ -18,7 +18,7 @@ if (!function_exists('get_setting')) {
     {
         // Cache all settings for 24 hours
         $settings = Cache::remember('app_settings', now()->addDay(), function () {
-            return Setting::pluck('value', 'key')->toArray();
+            return Setting::pluck('value', 'key', 'is_file', 'image_url')->toArray();
         });
 
         // Return single setting or all

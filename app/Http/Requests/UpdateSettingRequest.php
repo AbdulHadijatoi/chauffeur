@@ -22,7 +22,7 @@ class UpdateSettingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'key' => 'sometimes|required|string|max:255|unique:settings,key,' . $this->route('setting')->id,
+            'key' => 'nullable',
             'value' => 'nullable|string',
             'is_file' => 'boolean',
         ];

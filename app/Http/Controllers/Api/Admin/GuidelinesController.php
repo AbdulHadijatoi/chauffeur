@@ -13,6 +13,8 @@ class GuidelinesController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    // use cache in this to improve performance
     public function index(Request $request)
     {
         $query = Guideline::query();
@@ -68,7 +70,7 @@ class GuidelinesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Guideline $guideline)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'type' => 'sometimes|required|string|max:255',
@@ -76,9 +78,17 @@ class GuidelinesController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $guideline->update($request->validated());
+        $guideline = Guideline::find($id);
+        $guideline->update([
+            'type' => $request->type ?? $guideline->type,
+            'title' => $request->title ?? $guideline->title,
+            'description' => $request->description ?? $guideline->description,
+        ]);
 
-        return new GuidelineResource($guideline);
+        return response()->json([
+            'success' => true,
+            'message' => 'Guideline updated successfully'
+        ]);
     }
 
     /**

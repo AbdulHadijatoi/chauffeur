@@ -58,7 +58,10 @@ class ServicesCategoriesController extends Controller
 
         cache()->forget('services_categories');
 
-        return new ServicesCategoryResource($category);
+        return response()->json([
+            'success' => true,
+            'message' => 'Service category created successfully',
+        ], Response::HTTP_CREATED);
     }
 
     /**
@@ -74,6 +77,7 @@ class ServicesCategoriesController extends Controller
      */
     public function update(Request $request, $services_category_id)
     {
+
         $request->validate([
             'name' => 'nullable',
             'description' => 'nullable',
@@ -90,10 +94,10 @@ class ServicesCategoriesController extends Controller
 
         if ($request->hasFile('image')) {
             // Delete old image if exists
-            $oldImage = $servicesCategory->file;
-            if ($oldImage) {
-                $oldImage->delete();
-            }
+            // $oldImage = $servicesCategory->file;
+            // if ($oldImage) {
+            //     $oldImage->delete();
+            // }
 
             // Save new image
             $file = new File();
@@ -104,14 +108,19 @@ class ServicesCategoriesController extends Controller
 
         cache()->forget('services_categories');
 
-        return new ServicesCategoryResource($servicesCategory);
+        return response()->json([
+            'success' => true,
+            'message' => 'Service category updated successfully'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ServicesCategory $servicesCategory)
+    public function destroy($id)
     {
+        $servicesCategory = ServicesCategory::findOrFail($id);
+   
         $servicesCategory->delete();
 
         cache()->forget('services_categories');

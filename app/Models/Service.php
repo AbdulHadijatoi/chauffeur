@@ -8,12 +8,12 @@ class Service extends Model
 {
     protected $fillable = [
         'name',
-        'service_category_id',
+        'services_category_id',
         'vehicle_id',
         'description',
     ];
 
-    public function serviceCategory()
+    public function servicesCategory()
     {
         return $this->belongsTo(ServicesCategory::class);
     }

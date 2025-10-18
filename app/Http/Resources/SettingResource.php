@@ -19,8 +19,7 @@ class SettingResource extends JsonResource
             'key' => $this->key,
             'value' => $this->value,
             'is_file' => $this->is_file,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'image_url' => $this->image_url,
         ];
     }
 }

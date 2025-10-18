@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\Admin\ServicesCategoriesController;
 use App\Http\Controllers\Api\Admin\CountriesController;
 use App\Http\Controllers\Api\Admin\CitiesController;
 use App\Http\Controllers\Api\Admin\CityRoutesController;
+use App\Http\Controllers\Api\Admin\ConstantController;
 use App\Http\Controllers\Api\Admin\CountryRoutesController;
 use App\Http\Controllers\Api\Admin\VehicleTypesController;
 use App\Http\Controllers\Api\Admin\LocationsController;
@@ -52,14 +53,26 @@ Route::prefix('auth')->group(function () {
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
     
     // Settings management
-    Route::apiResource('settings', SettingsController::class);
-    Route::get('settings/key/{key}', [SettingsController::class, 'getByKey']);
-    Route::post('settings/bulk-update', [SettingsController::class, 'bulkUpdate']);
+    Route::prefix('constants')->group(function () {
+        Route::post('countries', [ConstantController::class, 'countries']);
+        Route::post('cities', [ConstantController::class, 'cities']);
+    });
+    Route::prefix('settings')->group(function () {
+        Route::post('/', [SettingsController::class, 'index']);
+        Route::post('create', [SettingsController::class, 'store']);
+        Route::post('update/{key}', [SettingsController::class, 'update']);
+        Route::post('upload-image', [SettingsController::class, 'uploadImage']);
+        // Route::get('/{id}', [SettingsController::class, 'show']);
+        Route::post('delete/{key}', [SettingsController::class, 'destroy']);
+    });
     
     // Guidelines management
-    Route::apiResource('guidelines', GuidelinesController::class);
-    Route::get('guidelines/type/{type}', [GuidelinesController::class, 'getByType']);
-    Route::get('guidelines-types', [GuidelinesController::class, 'getTypes']);
+    Route::prefix('guidelines')->group(function () {
+        Route::post('/', [GuidelinesController::class, 'index']);
+        Route::post('create', [GuidelinesController::class, 'store']);
+        Route::post('update/{id}', [GuidelinesController::class, 'update']);
+        Route::post('delete/{id}', [GuidelinesController::class, 'destroy']);
+    });
     
     // Files management
     Route::apiResource('files', FilesController::class);
@@ -70,11 +83,10 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     
     // Services Categories management
     Route::prefix('services-categories')->group(function () {
-        Route::get('/', [ServicesCategoriesController::class, 'index']);
+        Route::post('/', [ServicesCategoriesController::class, 'index']);
         Route::post('store', [ServicesCategoriesController::class, 'store']);
-        Route::post('update/{category}', [ServicesCategoriesController::class, 'update']);
-        Route::get('/{category}', [ServicesCategoriesController::class, 'show']);
-        Route::delete('/{category}', [ServicesCategoriesController::class, 'destroy']);
+        Route::post('update/{id}', [ServicesCategoriesController::class, 'update']);
+        Route::post('delete/{id}', [ServicesCategoriesController::class, 'destroy']);
     });
     
     // Countries management
@@ -87,8 +99,12 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::get('cities-all', [CitiesController::class, 'getAll']);
     
     // City Routes management
-    Route::apiResource('city-routes', CityRoutesController::class);
-    Route::get('city-routes/between', [CityRoutesController::class, 'getRouteBetween']);
+     Route::prefix('city-to-city-routes')->group(function () {
+        Route::post('/', [CityRoutesController::class, 'index']);
+        Route::post('create', [CityRoutesController::class, 'store']);
+        Route::post('update/{id}', [CityRoutesController::class, 'update']);
+        Route::post('delete/{id}', [CityRoutesController::class, 'destroy']);
+    });
     
     // Country Routes management
     Route::apiResource('country-routes', CountryRoutesController::class);
@@ -102,23 +118,10 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     
     // Vehicles management
     Route::prefix('vehicles')->group(function () {
-
-        // List all vehicles
-        Route::get('/', [VehiclesController::class, 'index']);
-
-        // Create new vehicle
-        Route::post('/', [VehiclesController::class, 'store']);
-
-        // Show single vehicle
-        Route::get('/{vehicle}', [VehiclesController::class, 'show']);
-
-        // Update vehicle
+        Route::post('/', [VehiclesController::class, 'index']);
+        Route::post('create', [VehiclesController::class, 'store']);
         Route::post('update/{vehicle}', [VehiclesController::class, 'update']);
-
-        // Delete vehicle
-        Route::delete('/{vehicle}', [VehiclesController::class, 'destroy']);
-        Route::get('{vehicle}/with-relations', [VehiclesController::class, 'showWithRelations']);
-        Route::delete('bulk-delete', [VehiclesController::class, 'bulkDelete']);
+        Route::delete('delete/{vehicle}', [VehiclesController::class, 'destroy']);
     });
     
     // Vehicle Images management
@@ -128,11 +131,11 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::post('vehicle-images/{vehicle_id}/set-primary', [VehicleImagesController::class, 'setPrimary']);
     
     Route::prefix('services')->group(function () {
-        Route::get('/', [ServicesController::class, 'index']);
-        Route::post('store', [ServicesController::class, 'store']);
-        Route::get('/{service}', [ServicesController::class, 'show']);
-        Route::post('update/{service}', [ServicesController::class, 'update']);
-        Route::delete('/{service}', [ServicesController::class, 'destroy']);
+        Route::post('/', [ServicesController::class, 'index']);
+        Route::post('constants', [ServicesController::class, 'constants']);
+        Route::post('create', [ServicesController::class, 'store']);
+        Route::post('update/{id}', [ServicesController::class, 'update']);
+        Route::post('delete/{id}', [ServicesController::class, 'destroy']);
     });
     
     // Service Types management

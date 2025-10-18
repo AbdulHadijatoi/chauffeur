@@ -50,7 +50,7 @@ class CityRoutesController extends Controller
 
         // Pagination
         
-        $routes = $query->orderBy('duration')->get();
+        $routes = $query->orderBy('id', 'DESC')->get();
 
         return response()->json([
             'success' => true,
@@ -70,10 +70,16 @@ class CityRoutesController extends Controller
             'distance' => 'required|numeric|min:0.1',
         ]);
 
-        $route = CityRoute::create($request->validated());
+        $route = CityRoute::create([
+            'from_city_id' => $request->from_city_id,
+            'to_city_id' => $request->to_city_id,
+            'duration' => $request->duration,
+            'distance' => $request->distance,
+        ]);
 
         return response()->json([
             'success' => true,
+            'message' => 'City route created successfully',
             'data' => $route->load(['fromCity.country', 'toCity.country'])
         ]);
     }
@@ -92,7 +98,7 @@ class CityRoutesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CityRoute $cityRoute)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'from_city_id' => 'sometimes|required|exists:cities,id',
@@ -101,10 +107,18 @@ class CityRoutesController extends Controller
             'distance' => 'sometimes|required|numeric|min:0.1',
         ]);
 
-        $cityRoute->update($request->validated());
+        $cityRoute = CityRoute::findOrFail($id);
+
+        $cityRoute->update([
+            'from_city_id' => $request->from_city_id,
+            'to_city_id' => $request->to_city_id,
+            'duration' => $request->duration,
+            'distance' => $request->distance,
+        ]);
 
         return response()->json([
             'success' => true,
+            'message' => 'City route updated successfully',
             'data' => $cityRoute->load(['fromCity.country', 'toCity.country'])
         ]);
     }
@@ -112,10 +126,12 @@ class CityRoutesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CityRoute $cityRoute)
+    public function destroy($id)
     {
+        $cityRoute = CityRoute::findOrFail($id);
         $cityRoute->delete();
 
+        // cache()->forget('app_cities');
         return response()->json([
             'success' => true,
             'message' => 'City route deleted successfully'

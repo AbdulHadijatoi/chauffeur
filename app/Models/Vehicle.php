@@ -17,7 +17,7 @@ class Vehicle extends Model
 
     public function images()
     {
-        return $this->hasMany(VehicleImage::class);
+        return $this->hasMany(VehicleImage::class)->orderBy('is_primary', 'DESC');
     }
 
     public function services()
