@@ -74,9 +74,9 @@ class ServicesController extends Controller
             'vehicle_id' => 'required|exists:vehicles,id',
             'services_category_id' => 'required|exists:services_categories,id',
             'description' => 'nullable|string',
-            'hour_duration' => 'nullable|string',
-            'price' => 'nullable',
-            'additional_price' => 'nullable',
+            'hour_duration' => 'required|numeric|min:1',
+            'price' => 'required|numeric|min:1',
+            'additional_price' => 'required|numeric|min:1',
         ]);
 
         $service = Service::create([
@@ -110,10 +110,11 @@ class ServicesController extends Controller
         $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'vehicle_id' => 'sometimes|required|exists:vehicles,id',
+            'services_category_id' => 'required|exists:services_categories,id',
             'description' => 'nullable|string',
-            'hour_duration' => 'nullable|string',
-            'price' => 'nullable',
-            'additional_price' => 'nullable',
+            'hour_duration' => 'required|numeric|min:1',
+            'price' => 'required|numeric|min:1',
+            'additional_price' => 'required|numeric|min:1',
         ]);
 
         $service = Service::find($id);
