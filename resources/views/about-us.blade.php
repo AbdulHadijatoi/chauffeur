@@ -75,7 +75,7 @@
                     </p>
                 </div>
                 <div class="relative">
-                    <div class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg p-8 shadow-2xl transform hover:scale-105 transition duration-300">
+                    <div class="bg-primary rounded-lg p-8 shadow-2xl transform hover:scale-105 transition duration-300">
                         <i class="fas fa-car-side text-white text-8xl mb-4 opacity-20"></i>
                         <div class="space-y-4">
                             <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4">
