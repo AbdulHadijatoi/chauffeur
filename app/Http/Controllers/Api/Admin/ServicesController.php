@@ -122,6 +122,7 @@ class ServicesController extends Controller
         $service->update([
             'name' => $request->name ?? $service->name,
             'vehicle_id' => $request->vehicle_id ?? $service->vehicle_id,
+            'services_category_id' => $request->services_category_id ?? $service->services_category_id,
             'description' => $request->description ?? $service->description,
         ]);
 
