@@ -104,7 +104,7 @@
                     </button>
                 </div> -->
                <div class="">
-                    <div class="text-xl md:text-2xl font-bold primary_text_color">AED {{$service->serviceType?$service->serviceType->price:''}}</div>
+                    <div class="text-xl md:text-2xl font-bold primary_text_color">AED {{$service->serviceType?intval($service->serviceType->price):0}}</div>
                     <div class="text-xs text-gray-600 font-medium">{{$service->serviceType?$service->serviceType->hour_duration:''}}-Hour Service</div>
                 </div>
                 <div class="">
