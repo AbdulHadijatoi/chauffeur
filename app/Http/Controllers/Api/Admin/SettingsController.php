@@ -158,21 +158,34 @@ class SettingsController extends Controller
             'settings.*.is_file' => 'boolean'
         ]);
 
-        $updatedSettings = [];
-
         foreach ($request->settings as $settingData) {
-            $setting = Setting::updateOrCreate(
-                ['key' => $settingData['key']],
-                [
-                    'value' => $settingData['value'] ?? '',
-                    'is_file' => $settingData['is_file'] ?? false
-                ]
-            );
-            $updatedSettings[] = $setting;
+            $setting = Setting::where('key', $settingData['key'])->first();
+            if($setting) {
+                if(isset($settingData['value'])) {
+                    $setting->value = $settingData['value'];
+
+                    if(isset($settingData['is_file'])) {
+                        $setting->is_file = $settingData['is_file'];
+
+                        // handle file upload
+                        if($settingData['is_file'] && isset($settingData['file'])) {
+                            $fileData = $settingData['file'];
+                            $file = new File();
+                            $file->saveFile($fileData, 'settings_images');
+                            $setting->value = $file->id;
+                        }
+                        
+                        $setting->save();
+                    }
+                }
+            }
         }
 
         Cache::forget('app_settings');
 
-        return SettingResource::collection($updatedSettings);
+        return response()->json([
+            'success' => true,
+            'message' => 'Settings updated successfully'
+        ]);
     }
 }

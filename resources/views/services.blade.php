@@ -202,7 +202,7 @@
                                                     <div class="text-xs text-gray-600 font-medium">{{$service->serviceType?$service->serviceType->hour_duration:''}}-Hour Service</div>
                                                 </div>
                                                 <div class="rounded-sm">
-                                                    <div class="text-lg font-bold primary_text_color">AED {{$service->serviceType?$service->serviceType->additional_price:''}}</div>
+                                                    <div class="text-lg font-bold primary_text_color">AED {{$service->serviceType?intval($service->serviceType->additional_price):0}}</div>
                                                     <div class="text-xs text-gray-600 font-medium">Additional Hour</div>
                                                 </div>
                                             </div>
