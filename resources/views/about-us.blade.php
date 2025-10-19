@@ -103,7 +103,7 @@
             <div class="max-w-6xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="bg-white rounded-lg p-8 shadow-lg">
-                        <div class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mb-6">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
                             <i class="fas fa-bullseye text-white text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
@@ -112,7 +112,7 @@
                         </p>
                     </div>
                     <div class="bg-white rounded-lg p-8 shadow-lg">
-                        <div class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mb-6">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
                             <i class="fas fa-eye text-white text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
@@ -214,7 +214,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="bg-amber-500 py-16 mt-16">
+    <section class="bg-primary py-16 mt-16">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold text-white mb-4">Ready to Experience Luxury?</h2>
             <p class="text-white text-lg mb-8">Book your premium chauffeur service today and travel in style</p>
