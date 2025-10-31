@@ -6,7 +6,7 @@
 <!-- Hero Section -->
 <section class="relative bg-black via-gray-800 text-white px-4 mb-12">
     <div class="absolute inset-0 bg-black/60 z-10"></div>
-    <div class="absolute inset-0" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
+    <div class="absolute inset-0" style="background-image: url('{{get_setting('hero_image')}}'); background-size: cover; background-position: center;"></div>
     <div class="max-w-6xl container mx-auto relative z-10 h-100 py-6 md:h-[450px] align-start flex flex-col justify-center">
         <div class="w-100 items-center font-light">
             <h2 class="text-3xl md:text-4xl font-semibold mb-2">
