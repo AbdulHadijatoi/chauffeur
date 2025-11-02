@@ -77,6 +77,8 @@ class CityRoutesController extends Controller
             'distance' => $request->distance,
         ]);
 
+        cache()->forget('city_routes');
+
         return response()->json([
             'success' => true,
             'message' => 'City route created successfully',
@@ -116,6 +118,8 @@ class CityRoutesController extends Controller
             'distance' => $request->distance,
         ]);
 
+        cache()->forget('city_routes');
+
         return response()->json([
             'success' => true,
             'message' => 'City route updated successfully',
@@ -131,7 +135,8 @@ class CityRoutesController extends Controller
         $cityRoute = CityRoute::findOrFail($id);
         $cityRoute->delete();
 
-        // cache()->forget('app_cities');
+        cache()->forget('city_routes');
+
         return response()->json([
             'success' => true,
             'message' => 'City route deleted successfully'
