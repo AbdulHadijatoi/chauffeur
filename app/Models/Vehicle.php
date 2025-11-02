@@ -25,8 +25,8 @@ class Vehicle extends Model
         return $this->hasMany(Service::class);
     }
 
-    public function specs()
-    {
-        return $this->hasOne(VehicleSpec::class);
-    }
+    // public function specs()
+    // {
+    //     return $this->hasOne(VehicleSpec::class);
+    // }
 }

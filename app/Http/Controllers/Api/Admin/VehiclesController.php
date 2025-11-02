@@ -18,7 +18,7 @@ class VehiclesController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Vehicle::with(['images', 'specs']);
+        $query = Vehicle::with(['images']);
 
         // Search functionality
         if ($request->has('search') && $request->search) {
@@ -60,33 +60,10 @@ class VehiclesController extends Controller
     {
 
         $request->validate([
-            // 'name' => 'required|string|max:255|unique:vehicles,name',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'passengers' => 'required|integer|min:1',
             'luggage' => 'required|integer|min:0',
-            'transmission' => 'nullable',
-            'mileage' => 'nullable',
-            'steering' => 'nullable',
-            'fuel_type' => 'nullable',
-            'engine' => 'nullable',
-            'power' => 'nullable',
-            'torque' => 'nullable',
-            'acceleration' => 'nullable',
-            'top_speed' => 'nullable',
-            'fuel_capacity' => 'nullable',
-            'weight' => 'nullable',
-            'length' => 'nullable',
-            'width' => 'nullable',
-            'height' => 'nullable',
-            'wheelbase' => 'nullable',
-            'ground_clearance' => 'nullable',
-            'turning_radius' => 'nullable',
-            'boot_space' => 'nullable',
-            'air_conditioning' => 'nullable',
-            'infotainment' => 'nullable',
-            'safety_features' => 'nullable',
-            'comfort_features' => 'nullable',
             'images' => 'nullable|array'
         ]);
 
@@ -96,31 +73,6 @@ class VehiclesController extends Controller
             'passengers' => $request->passengers,
             'luggage' => $request->luggage,
         ]);
-
-        $vehicle->specs()->create($request->only([
-            'transmission',
-            'mileage',
-            'steering',
-            'fuel_type',
-            'engine',
-            'power',
-            'torque',
-            'acceleration',
-            'top_speed',
-            'fuel_capacity',
-            'weight',
-            'length',
-            'width',
-            'height',
-            'wheelbase',
-            'ground_clearance',
-            'turning_radius',
-            'boot_space',
-            'air_conditioning',
-            'infotainment',
-            'safety_features',
-            'comfort_features',
-        ]));
 
         if($request->has('images') && is_array($request->images)) {
             foreach ($request->images as $index => $imageId) {
@@ -136,7 +88,7 @@ class VehiclesController extends Controller
             'message' => 'Vehicle created successfully',
         ], Response::HTTP_CREATED);
 
-        return new VehicleResource($vehicle->load(['images', 'specs']));
+        return new VehicleResource($vehicle->load(['images']));
     }
 
     /**
@@ -144,7 +96,7 @@ class VehiclesController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
-        return new VehicleResource($vehicle->load(['images', 'specs']));
+        return new VehicleResource($vehicle->load(['images']));
     }
 
     /**
@@ -158,28 +110,6 @@ class VehiclesController extends Controller
             'passengers' => 'required|integer|min:1',
             'luggage' => 'required|integer|min:0',
             'images' => 'nullable|array',
-            'transmission' => 'nullable',
-            'mileage' => 'nullable',
-            'steering' => 'nullable',
-            'fuel_type' => 'nullable',
-            'engine' => 'nullable',
-            'power' => 'nullable',
-            'torque' => 'nullable',
-            'acceleration' => 'nullable',
-            'top_speed' => 'nullable',
-            'fuel_capacity' => 'nullable',
-            'weight' => 'nullable',
-            'length' => 'nullable',
-            'width' => 'nullable',
-            'height' => 'nullable',
-            'wheelbase' => 'nullable',
-            'ground_clearance' => 'nullable',
-            'turning_radius' => 'nullable',
-            'boot_space' => 'nullable',
-            'air_conditioning' => 'nullable',
-            'infotainment' => 'nullable',
-            'safety_features' => 'nullable',
-            'comfort_features' => 'nullable',
         ]);
 
         $vehicle = Vehicle::findOrFail($vehicle_id);
@@ -189,31 +119,6 @@ class VehiclesController extends Controller
             'passengers' => $request->passengers,
             'luggage' => $request->luggage,
         ]);
-
-        $vehicle->specs()->updateOrCreate([], $request->only([
-            'transmission',
-            'mileage',
-            'steering',
-            'fuel_type',
-            'engine',
-            'power',
-            'torque',
-            'acceleration',
-            'top_speed',
-            'fuel_capacity',
-            'weight',
-            'length',
-            'width',
-            'height',
-            'wheelbase',
-            'ground_clearance',
-            'turning_radius',
-            'boot_space',
-            'air_conditioning',
-            'infotainment',
-            'safety_features',
-            'comfort_features',
-        ]));
 
         if($request->has('images') && is_array($request->images)) {
             // add new images
@@ -248,7 +153,7 @@ class VehiclesController extends Controller
      */
     public function showWithRelations(Vehicle $vehicle)
     {
-        return new VehicleResource($vehicle->load(['images.file', 'specs']));
+        return new VehicleResource($vehicle->load(['images.file']));
     }
 
     /**

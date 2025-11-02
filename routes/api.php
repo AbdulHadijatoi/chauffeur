@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\Admin\ServiceTypesController;
 use App\Http\Controllers\Api\Admin\VehicleSpecsController;
 use App\Http\Controllers\Api\Admin\QuotesController;
 use App\Http\Controllers\Api\Admin\UsersController;
+use App\Http\Controllers\Api\Admin\ReviewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,4 +159,14 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::post('users/{user}/verify-email', [UsersController::class, 'verifyEmail']);
     Route::get('users-admins', [UsersController::class, 'getAdmins']);
     Route::get('users-regular', [UsersController::class, 'getRegularUsers']);
+    
+    // Reviews management
+    Route::prefix('reviews')->group(function () {
+        Route::post('/', [ReviewsController::class, 'index']);
+        Route::post('create', [ReviewsController::class, 'store']);
+        Route::get('service/{serviceId}', [ReviewsController::class, 'getByService']);
+        Route::get('{id}', [ReviewsController::class, 'show']);
+        Route::post('update/{id}', [ReviewsController::class, 'update']);
+        Route::post('delete/{id}', [ReviewsController::class, 'destroy']);
+    });
 });

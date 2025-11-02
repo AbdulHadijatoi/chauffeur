@@ -37,7 +37,6 @@ class DatabaseSeeder extends Seeder
             VehicleImagesSeeder::class,
             ServicesSeeder::class,
             ServiceTypesSeeder::class,
-            VehicleSpecsSeeder::class,
             QuotesSeeder::class,
         ]);
     }

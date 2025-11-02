@@ -32,4 +32,9 @@ class Service extends Model
     {
         return $this->hasOne(ServiceType::class, 'service_id');
     }
+    
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'service_id');
+    }
 }
