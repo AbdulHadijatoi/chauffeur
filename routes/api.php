@@ -130,6 +130,7 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::post('vehicle-images/upload', [VehicleImagesController::class, 'uploadImage']);
     Route::get('vehicles/{vehicle}/images', [VehicleImagesController::class, 'getVehicleImages']);
     Route::post('vehicle-images/{vehicle_id}/set-primary', [VehicleImagesController::class, 'setPrimary']);
+    Route::post('vehicle-images/delete/{id}', [VehicleImagesController::class, 'deleteById']);
     
     Route::prefix('services')->group(function () {
         Route::post('/', [ServicesController::class, 'index']);

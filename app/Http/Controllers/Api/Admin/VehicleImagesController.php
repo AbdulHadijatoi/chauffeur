@@ -101,6 +101,28 @@ class VehicleImagesController extends Controller
     }
 
     /**
+     * Delete vehicle image by ID
+     */
+    public function deleteById($id)
+    {
+        $vehicleImage = VehicleImage::find($id);
+
+        if (!$vehicleImage) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Vehicle image not found'
+            ], 404);
+        }
+
+        $vehicleImage->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Vehicle image deleted successfully'
+        ]);
+    }
+
+    /**
      * Upload image for vehicle
      */
     public function uploadImage(Request $request)
