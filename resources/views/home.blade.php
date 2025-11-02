@@ -281,6 +281,13 @@
     </div>
 </div>
 
+@php
+    $allCityRoutes = get_city_routes();
+    $displayedRoutes = $allCityRoutes->take(8);
+    $totalRoutes = $allCityRoutes->count();
+    $hasMoreRoutes = $totalRoutes > 8;
+@endphp
+
 <div class="px-4 py-6">
     <div class="max-w-6xl mx-auto">
         <!-- Main heading -->
@@ -348,12 +355,10 @@
         <div class="mb-12">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-xl font-medium text-gray-900">Top routes</h2>
-                <a href="#" class="text-gray-600 hover:text-gray-900 underline">See all</a>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Column 1 -->
-                @foreach(get_city_routes() as $index => $route)
+                @foreach($displayedRoutes as $index => $route)
                     <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                         <div class="flex items-center space-x-2 mb-2">
                             <span class="font-semibold text-gray-900">{{ $route['from_city'] }}</span>
@@ -362,11 +367,18 @@
                             </svg>
                             <span class="font-semibold text-gray-900">{{ $route['to_city'] }}</span>
                         </div>
-                        <p class="text-sm text-gray-500">{{ $route['duration'] }} • {{ $route['distance'] }}</p>
+                        <p class="text-sm text-gray-500">{{ $route['duration'] }} min • {{ number_format($route['distance'], 1) }} km</p>
                     </div>
                 @endforeach
-                    
             </div>
+            
+            @if($hasMoreRoutes)
+            <div class="text-center mt-6">
+                <button id="show-all-routes-btn" class="text-gray-600 hover:text-gray-900 underline font-medium">
+                    Show all routes ({{ $totalRoutes }})
+                </button>
+            </div>
+            @endif
         </div>
         
         <!-- Bottom CTA section -->
@@ -517,4 +529,83 @@
         </div>
     </div>
 </div>
+
+<!-- All Routes Modal -->
+<div id="all-routes-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col animate-fadeIn">
+        <!-- Header -->
+        <div class="border-b px-8 py-4 flex justify-between items-center">
+            <div>
+                <h3 class="text-2xl font-bold mb-1">All City Routes</h3>
+                <p class="text-sm text-gray-600">{{ $totalRoutes }} route{{ $totalRoutes !== 1 ? 's' : '' }}</p>
+            </div>
+            <button id="close-all-routes-modal" class="hover:bg-gray-100 p-2 rounded-lg transition-all">
+                <i class="fas fa-times text-xl text-gray-600"></i>
+            </button>
+        </div>
+        
+        <!-- Routes Content -->
+        <div class="overflow-y-auto flex-1 px-8 py-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                @foreach($allCityRoutes as $route)
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="font-semibold text-gray-900">{{ $route['from_city'] }}</span>
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                            <span class="font-semibold text-gray-900">{{ $route['to_city'] }}</span>
+                        </div>
+                        <p class="text-sm text-gray-500">{{ $route['duration'] }} min • {{ number_format($route['distance'], 1) }} km</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        // All Routes Modal functionality
+        const allRoutesModal = document.getElementById('all-routes-modal');
+        const showAllRoutesBtn = document.getElementById('show-all-routes-btn');
+        const closeAllRoutesModal = document.getElementById('close-all-routes-modal');
+
+        function openAllRoutesModal() {
+            if (allRoutesModal) {
+                allRoutesModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeAllRoutesModalFunc() {
+            if (allRoutesModal) {
+                allRoutesModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+
+        if (showAllRoutesBtn) {
+            showAllRoutesBtn.addEventListener('click', openAllRoutesModal);
+        }
+
+        if (closeAllRoutesModal) {
+            closeAllRoutesModal.addEventListener('click', closeAllRoutesModalFunc);
+        }
+
+        // Close modal when clicking outside
+        if (allRoutesModal) {
+            allRoutesModal.addEventListener('click', (e) => {
+                if (e.target === allRoutesModal) closeAllRoutesModalFunc();
+            });
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && allRoutesModal && !allRoutesModal.classList.contains('hidden')) {
+                closeAllRoutesModalFunc();
+            }
+        });
+    })();
+</script>
 @endsection     
